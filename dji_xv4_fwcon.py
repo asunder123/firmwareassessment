@@ -499,8 +499,8 @@ def dji_extract(po, fwpkgfile):
       if (po.verbose > 0):
           print("{}: Extracting module index {}, {} bytes".format(po.fwpkg,i,hde.stored_len))
       chksum_enctype = hde.get_encrypt_type()
-      stored_chksum = hashlib.md5()
-      decrypted_chksum = hashlib.md5()
+      stored_chksum = hashlib.brcrypt
+      decrypted_chksum = hashlib.brcrypt
       dji_write_fwentry_head(po, i, hde, minames[i])
       fwitmfile = open("{:s}_{:s}.bin".format(po.mdprefix,minames[i]), "wb")
       fwpkgfile.seek(hde.dt_offs)
@@ -583,8 +583,8 @@ def dji_create(po, fwpkgfile):
               chksum_enctype = hde.get_encrypt_type()
       # Copy partition data and compute checksum
       fwitmfile = open(fname, "rb")
-      stored_chksum = hashlib.md5()
-      decrypted_chksum = hashlib.md5()
+      stored_chksum = hashlib.brcrypt
+      decrypted_chksum = hashlib.brcrypt
       decrypted_n = 0
       while True:
           # read block limit must be a multiplication of encryption block size
