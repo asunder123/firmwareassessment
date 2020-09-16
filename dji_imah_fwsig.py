@@ -335,11 +335,11 @@ def imah_get_crypto_params(po, pkghead):
         eprint("{}: Warning: Cannot find enc_key '{:s}'".format(po.sigfile,enc_k_str))
         return (None, None, None)
     # Prepare initial values for AES
-    crypt_mode = AES.MODE_CBC
+    crypt_mode = AES.MODE_GCM
     if pkghead.header_version == 1:
         if (po.verbose > 3):
             print("Key encryption key:\n{:s}\n".format(' '.join("{:02X}".format(x) for x in enc_key)))
-        cipher = AES.new(enc_key, AES.MODE_CBC, bytes([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+        cipher = AES.new(enc_key, AES.MODE_GCM, bytes([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
         if (po.verbose > 3):
             print("Encrypted Scramble key:\n{:s}\n".format(' '.join("{:02X}".format(x) for x in pkghead.scram_key)))
         crypt_key = cipher.decrypt(pkghead.scram_key)
@@ -467,7 +467,7 @@ def imah_read_fwsig_head(po):
         if enc_key is None:
             eprint("{}: Warning: Cannot find enc_key '{:s}'; scramble key left unencrypted.".format(fwsigfile.name,enc_k_str))
         else:
-            cipher = AES.new(enc_key, AES.MODE_CBC, bytes([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+            cipher = AES.new(enc_key, AES.MODE_GCM, bytes([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
             crypt_key_enc = cipher.encrypt(pkghead.scram_key)
             pkghead.scram_key = (c_ubyte * 16)(*list(crypt_key_enc))
 
