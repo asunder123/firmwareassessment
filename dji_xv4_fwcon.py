@@ -332,7 +332,7 @@ def dji_decrypt_block(cipher_buf, enc_key, enc_iv):
   plain_buf = b""
   for cbpos in range(0, len(cipher_buf), block_sz):
       # Reinit the crypto for each block, this is how Dji does it
-      crypto = AES.new(enc_key, AES.MODE_CBC, enc_iv)
+      crypto = AES.new(enc_key, AES.MODE_GCM, enc_iv)
       plain_buf += crypto.decrypt(cipher_buf[cbpos:cbpos+block_sz])
   return plain_buf, enc_iv
 
@@ -342,7 +342,7 @@ def dji_encrypt_block(cipher_buf, enc_key, enc_iv):
   plain_buf = b""
   for cbpos in range(0, len(cipher_buf), block_sz):
       # Reinit the crypto for each block, this is how Dji does it
-      crypto = AES.new(enc_key, AES.MODE_CBC, enc_iv)
+      crypto = AES.new(enc_key, AES.MODE_GCM, enc_iv)
       plain_buf += crypto.encrypt(cipher_buf[cbpos:cbpos+block_sz])
   return plain_buf, enc_iv
 

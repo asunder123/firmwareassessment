@@ -165,7 +165,7 @@ def unpack(args):
     dec_buffer = bytes()
     for i in range((header.size + 255) // 256):
         enc_buffer = data[(i * 256):((i + 1) * 256)]
-        cipher = AES.new(encrypt_key, AES.MODE_CBC, encrypt_iv)
+        cipher = AES.new(encrypt_key, AES.MODE_GCM, encrypt_iv)
         dec_buffer += cipher.decrypt(enc_buffer)
 
     md5_data = hashlib.md5()
@@ -239,7 +239,7 @@ def pack(args):
     enc_buffer = bytes()
     for i in range(((len(data) + 255) // 256)):
         dec_buffer = data[(i * 256):((i + 1) * 256)]
-        cipher = AES.new(encrypt_key, AES.MODE_CBC, encrypt_iv)
+        cipher = AES.new(encrypt_key, AES.MODE_GCM, encrypt_iv)
         enc_buffer += cipher.encrypt(dec_buffer)
 
     args.output.write(header)

@@ -233,35 +233,36 @@ class ImgPkgHeader(LittleEndianStructure):
         fp.write("# DJI Firmware Signer main header file.\n")
         fp.write(strftime("# Generated on %Y-%m-%d %H:%M:%S\n", gmtime()))
         varkey = 'name'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey]))
+        regex = regex
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'pkg_format'
-        fp.write("{:s}={:d}\n".format(varkey,self.get_format_version()))
+        fp.write(regex.format(varkey,self.get_format_version()))
         varkey = 'version'
         fp.write("{:s}={:02d}.{:02d}.{:02d}.{:02d}\n".format(varkey, (d[varkey]>>24)&255, (d[varkey]>>16)&255, (d[varkey]>>8)&255, (d[varkey])&255))
         varkey = 'anti_version'
         fp.write("{:s}={:02d}.{:02d}.{:02d}.{:02d}\n".format(varkey, (d[varkey]>>24)&255, (d[varkey]>>16)&255, (d[varkey]>>8)&255, (d[varkey])&255))
         varkey = 'date'
-        fp.write("{:s}={:s}\n".format(varkey,strftime("%Y-%m-%d",strptime("{:x}".format(d[varkey]), '%Y%m%d'))))
+        fp.write(regex.format(varkey,strftime("%Y-%m-%d",strptime("{:x}".format(d[varkey]), '%Y%m%d'))))
         varkey = 'enc_key'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'auth_alg'
-        fp.write("{:s}={:d}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'auth_key'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'os'
-        fp.write("{:s}={:d}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'arch'
-        fp.write("{:s}={:d}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'compression'
-        fp.write("{:s}={:d}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'type'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'userdata'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey].decode("utf-8"))) # not sure if string or binary
+        fp.write(regex.format(varkey,d[varkey].decode("utf-8"))) # not sure if string or binary
         varkey = 'entry'
-        fp.write("{:s}={:s}\n".format(varkey,''.join("{:02X}".format(x) for x in d[varkey])))
+        fp.write(regex.format(varkey,''.join("{:02X}".format(x) for x in d[varkey])))
         #varkey = 'scram_key' # we will add the key later, as this one is encrypted
-        #fp.write("{:s}={:s}\n".format(varkey,"".join("{:02X}".format(x) for x in d[varkey])))
+        #fp.write(regex.format(varkey,"".join("{:02X}".format(x) for x in d[varkey])))
 
     def __repr__(self):
         d = self.dict_export()
@@ -296,7 +297,7 @@ class ImgChunkHeader(LittleEndianStructure):
         fp.write("# DJI Firmware Signer chunk header file.\n")
         fp.write(strftime("# Generated on %Y-%m-%d %H:%M:%S\n", gmtime()))
         varkey = 'id'
-        fp.write("{:s}={:s}\n".format(varkey,d[varkey]))
+        fp.write(regex.format(varkey,d[varkey]))
         varkey = 'attrib'
         fp.write("{:s}={:04X}\n".format(varkey,d[varkey]))
         #varkey = 'offset'
@@ -376,16 +377,16 @@ def imah_write_fwsig_head(po, pkghead, minames):
     pkghead.ini_export(fwheadfile)
     # Prepare initial values for AES
     if pkghead.header_version == 0: # Scramble key is used as initial vector
-        fwheadfile.write("{:s}={:s}\n".format('scramble_iv',' '.join("{:02X}".format(x) for x in pkghead.scram_key)))
+        fwheadfile.write(regex.format('scramble_iv',' '.join("{:02X}".format(x) for x in pkghead.scram_key)))
     else:
         crypt_key, _, _ = imah_get_crypto_params(po, pkghead)
         if crypt_key is None: # Scramble key is used, but we cannot decrypt it
             eprint("{}: Warning: Storing encrypted scramble key due to missing crypto config.".format(po.sigfile))
-            fwheadfile.write("{:s}={:s}\n".format('scramble_key_encrypted',' '.join("{:02X}".format(x) for x in pkghead.scram_key)))
+            fwheadfile.write(regex.format('scramble_key_encrypted',' '.join("{:02X}".format(x) for x in pkghead.scram_key)))
         else: # Store the decrypted scrable key
-            fwheadfile.write("{:s}={:s}\n".format('scramble_key',' '.join("{:02X}".format(x) for x in crypt_key)))
+            fwheadfile.write(regex.format('scramble_key',' '.join("{:02X}".format(x) for x in crypt_key)))
     # Store list of modules/chunks to include
-    fwheadfile.write("{:s}={:s}\n".format('modules',' '.join(minames)))
+    fwheadfile.write(regex.format('modules',' '.join(minames)))
     fwheadfile.close()
 
 def imah_read_fwsig_head(po):
