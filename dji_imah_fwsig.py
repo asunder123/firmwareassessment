@@ -233,7 +233,7 @@ class ImgPkgHeader(LittleEndianStructure):
         fp.write("# DJI Firmware Signer main header file.\n")
         fp.write(strftime("# Generated on %Y-%m-%d %H:%M:%S\n", gmtime()))
         varkey = 'name'
-        regex = regex
+        regex= other.regex
         fp.write(regex.format(varkey,d[varkey]))
         varkey = 'pkg_format'
         fp.write(regex.format(varkey,self.get_format_version()))
