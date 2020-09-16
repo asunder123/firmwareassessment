@@ -44,6 +44,7 @@ from comm_serialtalk import (
   do_send_request, do_receive_reply, SerialMock
 )
 from comm_mkdupc import *
+import parser
 
 def eprint(*args, **kwargs):
   print(*args, file=sys.stderr, **kwargs)
@@ -1511,116 +1512,111 @@ def parse_product_code(s):
     return s
 
 def main():
-    """ Main executable function.
+  parser = argparse.ArgumentParser(description=__doc__)
 
-      Its task is to parse command line options and call a function which performs serial communication.
-    """
-    parser = argparse.ArgumentParser(description=__doc__)
-
-    parser.add_argument('port', type=str,
+  parser.add_argument('port', type=str,
             help="the serial port to write to and read from")
 
-    parser.add_argument('product', metavar='product', choices=[i.name for i in PRODUCT_CODE], type=parse_product_code,
+  parser.add_argument('product', metavar='product', choices=[i.name for i in PRODUCT_CODE], type=parse_product_code,
             help="target product code name; one of: {:s}".format(','.join(i.name for i in PRODUCT_CODE)))
 
-    parser.add_argument('-b', '--baudrate', default=9600, type=int,
+  parser.add_argument('-b', '--baudrate', default=9600, type=int,
             help="the baudrate to use for the serial port (default is %(default)s)")
 
-    parser.add_argument('-w', '--timeout', default=500, type=int,
+  parser.add_argument('-w', '--timeout', default=500, type=int,
             help="how long to wait for answer, in miliseconds (default is %(default)s)")
 
-    parser.add_argument('--dry-test', action='store_true',
+  parser.add_argument('--dry-test', action='store_true',
             help="internal testing mode; do not use real serial interface and use template answers from the drone.")
 
-    parser.add_argument('-v', '--verbose', action='count', default=0,
+  parser.add_argument('-v', '--verbose', action='count', default=0,
             help="increases verbosity level; max level is set by -vvv")
 
-    parser.add_argument('--version', action='version', version="%(prog)s {version} by {author}"
+  parser.add_argument('--version', action='version', version="%(prog)s {version} by {author}"
               .format(version=__version__,author=__author__),
             help="display version information and exit")
 
-    subparsers = parser.add_subparsers(dest='svcmd', metavar='command',
+  subparsers = parser.add_subparsers(dest='svcmd', metavar='command',
             help="service command")
 
-    subpar_flycpar = subparsers.add_parser('FlycParam',
+  subpar_flycpar = subparsers.add_parser('FlycParam',
             help="Flight Controller Parameters handling")
 
-    subpar_flycpar_subcmd = subpar_flycpar.add_subparsers(dest='subcmd',
+  subpar_flycpar_subcmd = subpar_flycpar.add_subparsers(dest='subcmd',
             help="Flyc Param Command")
-
-    subpar_flycpar_list = subpar_flycpar_subcmd.add_parser('list',
+  subpar_flycpar_list = subpar_flycpar_subcmd.add_parser('list',
             help="list FlyC Parameters")
-    subpar_flycpar_list.add_argument('-s', '--start', default=0, type=int,
+  subpar_flycpar_list.add_argument('-s', '--start', default=0, type=int,
             help="starting index")
-    subpar_flycpar_list.add_argument('-c', '--count', default=100, type=int,
+  subpar_flycpar_list.add_argument('-c', '--count', default=100, type=int,
             help="amount of entries to show")
-    subpar_flycpar_list.add_argument('-f', '--fmt', default='simple', type=str,
+  subpar_flycpar_list.add_argument('-f', '--fmt', default='simple', type=str,
             choices=['simple', '1line', '2line', 'tab', 'csv'],
             help="output format")
 
-    subpar_flycpar_get = subpar_flycpar_subcmd.add_parser('get',
+  subpar_flycpar_get = subpar_flycpar_subcmd.add_parser('get',
             help="get value of FlyC Param")
-    subpar_flycpar_get.add_argument('param_name', type=str,
+  subpar_flycpar_get.add_argument('param_name', type=str,
             help="name string of the requested parameter")
-    subpar_flycpar_get.add_argument('--alt', action='store_true',
+  subpar_flycpar_get.add_argument('--alt', action='store_true',
             help="use alternative way; try in case the normal one does not work")
-    subpar_flycpar_get.add_argument('-f', '--fmt', default='simple', type=str,
+  subpar_flycpar_get.add_argument('-f', '--fmt', default='simple', type=str,
             choices=['simple', '1line', '2line', 'tab', 'csv'],
             help="output format")
 
-    subpar_flycpar_set = subpar_flycpar_subcmd.add_parser('set',
+  subpar_flycpar_set = subpar_flycpar_subcmd.add_parser('set',
             help="update value of FlyC Param")
-    subpar_flycpar_set.add_argument('param_name', type=str,
+  subpar_flycpar_set.add_argument('param_name', type=str,
             help="name string of the parameter")
-    subpar_flycpar_set.add_argument('param_value', type=str,
+  subpar_flycpar_set.add_argument('param_value', type=str,
             help="new value of the parameter")
-    subpar_flycpar_set.add_argument('--alt', action='store_true',
+  subpar_flycpar_set.add_argument('--alt', action='store_true',
             help="use alternative way; try in case the normal one does not work")
-    subpar_flycpar_set.add_argument('-f', '--fmt', default='simple', type=str,
+  subpar_flycpar_set.add_argument('-f', '--fmt', default='simple', type=str,
             choices=['simple', '1line', '2line', 'tab', 'csv'],
             help="output format")
 
-    subpar_gimbcal = subparsers.add_parser('GimbalCalib',
+  subpar_gimbcal = subparsers.add_parser('GimbalCalib',
             help="Gimbal Calibration options")
 
-    subpar_gimbcal_subcmd = subpar_gimbcal.add_subparsers(dest='subcmd',
+  subpar_gimbcal_subcmd = subpar_gimbcal.add_subparsers(dest='subcmd',
             help="Gimbal Calibration Command")
 
-    subpar_gimbcal_coarse = subpar_gimbcal_subcmd.add_parser('JointCoarse',
+  subpar_gimbcal_coarse = subpar_gimbcal_subcmd.add_parser('JointCoarse',
             help="gimbal Joint Coarse calibration; to be performed after " \
              "gimbal has been fixed or replaced, or is not straight")
 
-    subpar_gimbcal_hall = subpar_gimbcal_subcmd.add_parser('LinearHall',
+  subpar_gimbcal_hall = subpar_gimbcal_subcmd.add_parser('LinearHall',
             help="gimbal Linear Hall calibration; to be performed always " \
              "after JointCoarse calibration")
 
-    subpar_camcal = subparsers.add_parser('CameraCalib',
+  subpar_camcal = subparsers.add_parser('CameraCalib',
             help="Camera Calibration options")
 
-    subpar_camcal_subcmd = subpar_camcal.add_subparsers(dest='subcmd',
+  subpar_camcal_subcmd = subpar_camcal.add_subparsers(dest='subcmd',
             help="Camera Calibration Command")
 
-    subpar_camcal_encryptcheck = subpar_camcal_subcmd.add_parser('EncryptCheck',
+  subpar_camcal_encryptcheck = subpar_camcal_subcmd.add_parser('EncryptCheck',
             help="verify encryption pairing between Camera, Gimbal and DM3xx; " \
              "returns whether pairing is required")
 
-    subpar_camcal_encryptpair = subpar_camcal_subcmd.add_parser('EncryptPair',
+  subpar_camcal_encryptpair = subpar_camcal_subcmd.add_parser('EncryptPair',
             help="set encryption key to pair the Camera, Gimbal or DM3xx; " \
              "to be performed after replacing software in any of these chips; UNTESTED - may not work")
 
-    subpar_camcal_encryptpair.add_argument('-k', '--pairkey', type=bytes.fromhex,
+  subpar_camcal_encryptpair.add_argument('-k', '--pairkey', type=bytes.fromhex,
             help="Provide 32-byte pairing key as hex string")
 
-    subpar_camcal_encryptpair.add_argument('--force', action='store_true',
+  subpar_camcal_encryptpair.add_argument('--force', action='store_true',
             help="forces the keys to be written, even if this could " \
              "lead to inconsistent keys due to their read-only copy")
 
-    po = parser.parse_args()
+  po = parser.parse_args()
 
-    po.product = PRODUCT_CODE.from_name(po.product)
-    po.svcmd = SERVICE_CMD.from_name(po.svcmd)
+  po.product = PRODUCT_CODE.from_name(po.product)
+  po.svcmd = SERVICE_CMD.from_name(po.svcmd)
 
-    if po.svcmd == SERVICE_CMD.FlycParam:
+  if po.svcmd == SERVICE_CMD.FlycParam:
         po.subcmd = FLYC_PARAM_CMD.from_name(po.subcmd.upper())
         do_flyc_param_request(po)
     elif po.svcmd == SERVICE_CMD.GimbalCalib:
@@ -1629,11 +1625,9 @@ def main():
     elif po.svcmd == SERVICE_CMD.CameraCalib:
         po.subcmd = CAMERA_CALIB_CMD.from_name(po.subcmd.upper())
         do_camera_calib_request(po)
-
-if __name__ == '__main__':
+__name__==''
+if  __name__ == '__main__':
     try:
         main()
     except Exception as ex:
-        eprint("Error: "+str(ex))
-        #raise
-        sys.exit(10)
+     print("Error: "+str(ex))
