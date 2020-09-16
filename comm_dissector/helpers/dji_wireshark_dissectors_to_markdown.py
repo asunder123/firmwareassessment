@@ -38,13 +38,13 @@ import binascii
 import argparse
 import configparser
 import itertools
-from ctypes import *
 from time import gmtime, strftime, strptime
 from calendar import timegm
 from Crypto.Cipher import AES
 
 import lrparsing
 import lua52
+import string
 
 class ValueSim(enum.Enum): 
     # Simple, basic types
@@ -109,7 +109,8 @@ def lua_get_assign_st_full_name(assign_st, lua_fname):
     for expr4 in leaf_expr:
         if (not isinstance(expr4, tuple)):
             continue
-        if (expr4[0].name != 'T.name') and (expr4[0].name != "'.'"):
+        spname = "T.name"
+        if (expr4[0].name != spname) and (expr4[0].name != "'.'"):
             continue
         leaf_name += str(expr4[1])
     if (len(leaf_name) < 1):
@@ -183,7 +184,8 @@ def lua_exp_variable_ref_to_string(expr, lua_fname, ignore_fail=False):
     for expr1 in leaf_expr:
         if (not isinstance(expr1, tuple)):
             continue
-        if (expr1[0].name == 'T.name'):
+        pname = "T.name"
+        if (expr1[0].name == pname):
             leaf_val = expr1[1]
     if not isinstance(leaf_val, str):
         if not ignore_fail:
@@ -265,7 +267,7 @@ def lua_exp_to_math_expr(expr, body_locals, lua_fname, ignore_fail=False):
                 leaf_val += lua_exp_to_math_expr(expr1, body_locals, lua_fname, ignore_fail)
             else:
                 eprint("{:s}:{:d}: Warning: Member of 'exp' in math expression was not recognized".format(lua_fname,lua_line))
-        pass
+ 
 
     elif (expr[0].name == 'prefix_exp'):
         var_found = False
@@ -350,8 +352,7 @@ def simplify_math_expr(val_list, lua_fname):
             elif (out_math_chunks <= 0):
                 out_list += [ 0 ]
             out_math_chunks = 0
-            out_list += [ var_out ]
-            continue
+            out_list += [ var_out ]    
         else:
             if number_op is not None:
                 out_list += [ number_op ]
@@ -454,7 +455,9 @@ def lua_get_function_decl_st_name(expr, lua_fname):
             continue
         if (expr1[0].name == "'local'") or (expr1[0].name == "'function'"):
             continue
-        elif (expr1[0].name == 'T.name') or (expr1[0].name == "'.'"):
+        pname = "T.name"
+        literal = "'.'"
+        elif (expr1[0].name == pname) or (expr1[0].name == literal):
             if (is_function):
                 leaf_name += str(expr1[1])
             else:
@@ -507,7 +510,6 @@ def lua_get_function_decl_st_body(expr, lua_fname):
     return leaf_expr
 
 def lua_get_function_call_name(expr, lua_fname):
-    leaf_name = ''
     leaf_expr = expr
     # simplified tree structure when used as real function call:
     # 1: (prefix_exp (function_call (prefix_exp (var (variable_ref (T.name) ) ) ) (function_args) ) )
@@ -808,7 +810,6 @@ def lua_get_function_call_sim(expr, body_locals, lua_fname):
         if (val_func_conv != 'len'):
             # Having a call which does only conversion is only usual for 'len' converter; other ones would be suspicious
             print("{:s}:{:d}: Info: Call to '{:s}' with convert only ('{:s}')".format(lua_fname,lua_line,val_func,val_func_conv))
-        pass
     else:
         eprint("{:s}:{:d}: Error: Call without args '{:s}'".format(lua_fname,lua_line,val_func))
 
@@ -984,14 +985,13 @@ def lua_block_body_get_conditional_statements(block_expr,body_locals,lua_fname):
                  got_call += 1
             if got_call != 1:
                 eprint("{:s}:{:d}: Warning: Unexpected content of function_call_st, count of function_call is {:d}".format(lua_fname,lua_line,got_call))
-            continue # no need for further processing
         elif (expr2[0].name == 'assign_st') or (expr2[0].name == 'local_assign_st'):
             # Assignment statements don't have conditional clauses in our dissectors, so just simulate them
             # The assigned locals can be later used in conditional statements, so we're storing them for later
             local_name = lua_get_assign_st_full_name(expr2, lua_fname)
             local_val = lua_get_assign_st_value_sim(local_name, expr2, body_locals, lua_fname)
             body_locals[local_name] = local_val
-            continue # no need for further processing
+        
         elif (expr2[0].name == 'if_st'):
             #TODO implement
             local_cond = lua_get_if_st_condition(expr2, body_locals, lua_fname)
@@ -1006,7 +1006,7 @@ def lua_block_body_get_conditional_statements(block_expr,body_locals,lua_fname):
                 lua_block_body_get_conditional_statements(expr4,subblock_locals,lua_fname) # recurrence
             condition_list += [ local_cond ]
             #TODO implement conditions storing, here or below
-            continue
+      
         elif (expr2[0].name == 'while_st'):
             continue #TODO implement 'while'
         else:
@@ -1092,8 +1092,7 @@ def markdown_print_duml_main(po, duml_spec):
         else:
             print("| {:02x} | Command Set: {:s} |".format(cmdset, desc_set),file=fh)
     fh.close()
-    return
-
+  
 def markdown_print_duml_cmdset(po, duml_spec, cmdset):
     if cmdset in duml_spec['DJI_DUMLv1_MDFILES']:
         md_files = duml_spec['DJI_DUMLv1_MDFILES'][cmdset]
@@ -1126,7 +1125,7 @@ def markdown_print_duml_cmdset(po, duml_spec, cmdset):
             else:
                 print("| {:02x} | {:s} |".format(cmd, desc_cmd),file=fh)
     fh.close()
-    return
+
 
 def markdown_print_duml_cmdid(po, duml_spec, cmdset, cmd):
     if cmdset in duml_spec['DJI_DUMLv1_MDFILES']:
@@ -1144,7 +1143,7 @@ def markdown_print_duml_cmdid(po, duml_spec, cmdset, cmd):
     #TODO make printing the packet structure
 
     fh.close()
-    return
+
 
 def lua_parse_file(po, grammar, lua_file):
     """ Returns 3 lists with trees of specific items.
@@ -1229,7 +1228,7 @@ def lua_parse_main(po, lua_main):
             duml_spec['DJI_DUMLv1_CMD_TEXT'] = lua_get_assign_st_val_enum_list(assign_st, lua_fname)
         if (assign_st_name == 'DJI_DUMLv1_CMD_DISSECT'):
             duml_spec['DJI_DUMLv1_CMD_DISSECT'] = lua_get_assign_st_val_enum_list(assign_st, lua_fname)
-    # Find info on commands
+
     duml_spec['DJI_DUMLv1_CMD_TEXT_LIST'] = {}
     duml_spec['DJI_DUMLv1_CMD_DISSECT_LIST'] = {}
     for assign_st in lua_assign_st:
@@ -1274,9 +1273,9 @@ def lua_parse_main(po, lua_main):
             #TODO if results are different, we should include variants in the output
         else:
             print("{:s}:{:d}: Info: Function marked as not dissector: {:s}".format(func['fname'],func['fline'],func['name']))
-            #print(function_decl_st[:100])
+    #print(function_decl_st[:100])
         #print(func['name'] + "(" + str(func['args'])+ ")")
-        #print(func['body'])
+        #print(func['body']        )
         duml_spec['DJI_DUMLv1_CMD_DISSECT_FUNCT'][func['name']] = func
     # Prepare file names for command sets and commands
     duml_spec['DJI_DUMLv1_MDFILES'] = {}
@@ -1303,7 +1302,6 @@ def lua_parse_main(po, lua_main):
                 continue
             markdown_print_duml_cmdid(po, duml_spec, cmdset, cmd)
 
-    return
 
 def main():
     """ Main executable function.
@@ -1350,4 +1348,3 @@ if __name__ == "__main__":
     except Exception as ex:
         eprint("Error: "+str(ex))
         raise
-        sys.exit(10)
