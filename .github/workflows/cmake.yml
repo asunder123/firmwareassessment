@@ -26,7 +26,10 @@ jobs:
       run: mkdir ${{runner.workspace}}/build
       
      
-    - name: Create OpenCV  
+    - name: Change to Build Directory  
+      run: cd ${{runner.workspace}}/build
+      
+    - name: Install OpenCv  
       run: sudo apt install libopencv-dev python3-opencv
           
           
