@@ -38,12 +38,19 @@ jobs:
      
      
      
-    - name: List Files in Current Directory
+    - name: Create Open cv directory
       shell: bash
       working-directory: ${{runner.workspace}}/build
       run: mkdir opencv
-           cd ${{runner.workspace}}/build/opencv
-           ls -l
+    
+     
+     
+    - name: change directory 
+      run: cd ${{runner.workspace}}/build/opencv
+           
+    - name: List contents of working dir
+      working-directory:  ${{runner.workspace}}/build     
+      run: ls -ltr
    
    
    
