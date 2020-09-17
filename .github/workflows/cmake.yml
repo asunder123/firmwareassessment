@@ -37,7 +37,8 @@ jobs:
      
      
      
-    - name: List Files in Current Directory
+    - name: List Files in Current Directory'
+      working-directory: ${{runner.workspace}}/build
       run: ls -ltr
    
    
@@ -49,8 +50,9 @@ jobs:
      
      
     - name: Install Open CV for Computer Vision artifacts
+      shell: bash
       run: cd ${{runner.workspace}}/build/opencv 
-           - sudo apt install libopencv-dev python3-opencv
+           sudo apt install libopencv-dev python3-opencv
           
           
           
