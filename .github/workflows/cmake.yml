@@ -39,7 +39,6 @@ jobs:
      
      
     - name: Create Open cv directory
-      shell: bash
       working-directory: ${{runner.workspace}}/build
       run: mkdir opencv
     
@@ -62,8 +61,8 @@ jobs:
      
     - name: Install Open CV for Computer Vision artifacts
       shell: bash
-      run: cd ${{runner.workspace}}/build/opencv 
-           sudo apt install libopencv-dev python3-opencv
+      working-directory: cd ${{runner.workspace}}/build/opencv 
+      run: sudo apt install libopencv-dev python3-opencv
           
           
           
