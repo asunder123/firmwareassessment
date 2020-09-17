@@ -28,19 +28,27 @@ jobs:
      
     - name: Change to Build Directory  
       run: cd ${{runner.workspace}}/build
-      
+     
+     
+     
     - name: Current Working directory 
       run: pwd
-      
+     
+     
+     
     - name: List Files in Current Directory
       run: ls
-          
+   
+   
+   
     - name: Change to current working directory
       run: cd ${{runner.workspace}}/build/opencv
-      
+     
+     
+     
+     
     - name: Install Open CV for Computer Vision artifacts
-      run: pwd
-           - sudo apt install libopencv-dev python3-opencv
+      run: sudo apt install libopencv-dev python3-opencv
           
           
           
