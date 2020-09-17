@@ -38,9 +38,9 @@ jobs:
      
      
      
-    - name: List Files in Current Directory'
-      working-directory: ${{runner.workspace}}/build
+    - name: List Files in Current Directory
       shell: bash
+      working-directory: ${{runner.workspace}}/build
       run: mkdir opencv
            cd ${{runner.workspace}}/build/opencv
            ls -l
