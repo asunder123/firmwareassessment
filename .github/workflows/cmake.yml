@@ -30,7 +30,8 @@ jobs:
      
      
      
-    - name: Current Working directory 
+    - name: Current Working directory
+      working-directory: ${{runner.workspace}}/build 
       run: pwd
      
      
@@ -39,7 +40,10 @@ jobs:
      
     - name: List Files in Current Directory'
       working-directory: ${{runner.workspace}}/build
-      run: ls -ltr
+      shell: bash
+      run: mkdir opencv
+           cd ${{runner.workspace}}/build/opencv
+           ls -l
    
    
    
