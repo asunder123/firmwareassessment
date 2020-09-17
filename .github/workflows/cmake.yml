@@ -31,7 +31,6 @@ jobs:
      
      
     - name: Current Working directory 
-      working-directory: ${{runner.workspace}}/build
       run: pwd
      
      
@@ -39,8 +38,7 @@ jobs:
      
      
     - name: List Files in Current Directory
-      working-directory: ${{runner.workspace}}/build
-      run: ls -l
+      run: ls -ltr
    
    
    
