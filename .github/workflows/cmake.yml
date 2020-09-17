@@ -16,6 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
+    - name: Create OpenCV  
+      run: sudo apt install libopencv-dev python3-opencv
+     
 
     - name: Create Build Directory
       # Some projects don't allow in-source building, so create a separate build directory
