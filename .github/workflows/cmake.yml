@@ -75,10 +75,10 @@ jobs:
      
      
      
-    #- name: Install Open CV for Computer Vision artifacts
-    # shell: bash
-     # working-directory: cd ${{runner.workspace}}/build/opencv 
-     # run: sudo apt install libopencv-dev python3-opencv
+    - name: Install Open CV for Computer Vision artifacts
+      shell: bash
+      working-directory: ${{runner.workspace}}/build/opencv 
+      run: sudo apt install libopencv-dev python3-opencv
           
           
           
@@ -99,10 +99,9 @@ jobs:
 
     - name: Build
       shell: bash
-      working-directory: ${{runner.workspace}}/build   
+      working-directory: ${{runner.workspace}}/build/opencv   
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: sudo touch CMakeLists.txt
-           - sudo cmake --build  --config $BUILD_TYPE --target ${{runner.workspace}}/build/CMakeLists.txt
+      run: cmake --build  --config $BUILD_TYPE --target $GITHUB/CMakeLists.txt
 
     
     - name: Test
