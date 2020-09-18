@@ -54,7 +54,9 @@ jobs:
    
    
     - name: Change to current working directory
+      shell: bash
       run: cd ${{runner.workspace}}/build/opencv
+           touch CMakeLists.txt
      
      
      
