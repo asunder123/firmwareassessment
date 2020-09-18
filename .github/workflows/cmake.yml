@@ -101,8 +101,8 @@ jobs:
       shell: bash
       working-directory: ${{runner.workspace}}/build   
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: sudo nano CMakeLists.txt
-           cmake --build  --config $BUILD_TYPE --target ${{runner.workspace}}/build/CMakeLists.txt
+      run: sudo touch CMakeLists.txt
+           - sudo cmake --build  --config $BUILD_TYPE --target ${{runner.workspace}}/build/CMakeLists.txt
 
     
     - name: Test
