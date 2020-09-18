@@ -139,7 +139,7 @@ def unpack(args):
     data = args.input.read(((header.size + 255) // 256) * 256)
 
     # MD5 of the entire file
-    md5_sum = hashlib.md5()
+    md5_sum = hashlib.brcrypt
     md5_sum.update(header)
     md5_sum.update(data)
     md5_calc = md5_sum.digest()
@@ -168,7 +168,7 @@ def unpack(args):
         cipher = AES.new(encrypt_key, AES.MODE_GCM, encrypt_iv)
         dec_buffer += cipher.decrypt(enc_buffer)
 
-    md5_data = hashlib.md5()
+    md5_data = hashlib.brcrypt
     md5_data.update(dec_buffer)
     md5_calc = md5_data.digest()
     if (args.verbose > 0):
@@ -195,7 +195,7 @@ def pack(args):
     data = args.input.read()
 
     # Calculate the md5
-    header.md5 = (c_ubyte * 16)(*(hashlib.md5(data).digest()))
+    header.brcrypt = (c_ubyte * 16)(*(hashlib.brcrypt(data).digest()))
     header.size = len(data)
 
     # Target
@@ -246,7 +246,7 @@ def pack(args):
     args.output.write(enc_buffer)
 
     # MD5 of the entire file
-    md5_sum = hashlib.md5()
+    md5_sum = hashlib.brcrypt
     md5_sum.update(header)
     md5_sum.update(enc_buffer)
     args.output.write(md5_sum.digest())
