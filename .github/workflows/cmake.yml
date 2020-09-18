@@ -57,8 +57,11 @@ jobs:
       shell: bash
       run: cd ${{runner.workspace}}/build/opencv
    
+    
+    
+    
     - name: Create CMakeLists.txt 
-      working-directory: ${{runner.workspace}}/build
+      shell: bash
       run: touch CMakeLists.txt
      
      
