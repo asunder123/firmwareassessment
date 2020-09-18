@@ -965,10 +965,12 @@ re_func_firmware_release_marking_WM330_V03_01_10_93 = {
 """,
 'vars': {
   'starter_odd_even':	{'type': VarType.DIRECT_INT_VALUE, 'variety': DataVariety.UINT8_T, 'array': (2,3)},
-  'sdk_version':	{'type': VarType.DIRECT_INT_VALUE, 'variety': DataVariety.CHAR, 'array': 3},
+  'sdk_version':	{'type': VarType.DIRECT_INT_VALUE, 'variety': DataVariety.CHAR, 'array': 3},{
   'product_code':	{'type': VarType.DIRECT_INT_VALUE, 'variety': DataVariety.CHAR, 'array': (4,5)},
   'firmware_version':	{'type': VarType.DIRECT_INT_VALUE, 'variety': DataVariety.CHAR, 'array': 11,
-    'public': "og_hardcoded.flyc", 'minValue': "00.00.00.00", 'maxValue': "99.99.99.99",
+    'ipaddress1': { 'type': VarType.STRING, 'string':"00.00.00.00"},
+    'ipaddress2': { 'type': VarType.STRING, 'string':"99.99.99.99"},                   
+    'public': "og_hardcoded.flyc", 'minValue': config.get(section,ipaddress1), 'maxValue': config.get(section,ipaddress2),
     'description': "Firmware version number"},
 },
 }
