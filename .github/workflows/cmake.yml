@@ -4,7 +4,7 @@ on: [push]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
+  BUILD_TYPE: Debug
 
 jobs:
   build:
@@ -31,6 +31,7 @@ jobs:
      
      
     - name: Current Working directory
+      shell: bash
       working-directory: ${{runner.workspace}}/build 
       run: pwd
      
@@ -39,15 +40,20 @@ jobs:
      
      
     - name: Create Open cv directory
+      shell: bash
       working-directory: ${{runner.workspace}}/build
       run: mkdir opencv
     
      
      
     - name: change directory 
+      shell: bash
       run: cd ${{runner.workspace}}/build/opencv
            
+    
+    
     - name: List contents of working dir
+      shell: bash
       working-directory:  ${{runner.workspace}}/build     
       run: ls -ltr
    
@@ -78,6 +84,7 @@ jobs:
           
     - name: Run Cmake in Build environment
       working-directory: ${{runner.workspace}}/build
+      shell: bash
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     #- name: Configure CMake
@@ -94,11 +101,13 @@ jobs:
       shell: bash
       working-directory: ${{runner.workspace}}/build   
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build  --config $BUILD_TYPE
+      run: sudo nano CMakeLists.txt
+           cmake --build  --config $BUILD_TYPE --target ${{runner.workspace}}/build/CMakeLists.txt
 
+    
     - name: Test
-      working-directory: ${{runner.workspace}}/build
       shell: bash
+      working-directory: ${{runner.workspace}}/build
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C $BUILD_TYPE
