@@ -97,11 +97,11 @@ jobs:
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       # run: cmake ${{runner.workspace}}/build/opencv -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
-    - name: Build
-      shell: bash
-      working-directory: ${{runner.workspace}}/build/opencv   
+    # - name: Build
+    # shell: bash
+    #  working-directory: ${{runner.workspace}}/build/opencv   
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build  --config $BUILD_TYPE --target $GITHUB/CMakeLists.txt
+     #  run: cmake --build  --config $BUILD_TYPE --target $GITHUB/CMakeLists.txt
 
     
     - name: Test
