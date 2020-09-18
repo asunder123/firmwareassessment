@@ -15,6 +15,7 @@ jobs:
       with:
         python-version: 3.8
     - name: Create environment.yml file
+      working-directory: ${{runner.workspace}}
       run: conda env create -f environment.yml
     - name: Install dependencies
       run: |
