@@ -1625,7 +1625,7 @@ def main():
     elif po.svcmd == SERVICE_CMD.CameraCalib:
         po.subcmd = CAMERA_CALIB_CMD.from_name(po.subcmd.upper())
         do_camera_calib_request(po)
-__name__==''
+
 if  __name__ == '__main__':
     try:
         main()
