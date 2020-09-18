@@ -91,11 +91,10 @@ jobs:
       # run: cmake ${{runner.workspace}}/build/opencv -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
     - name: Build
-      working-directory: ${{runner.workspace}}/build
       shell: bash
+      working-directory: ${{runner.workspace}}/build   
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cd  ${{runner.workspace}}/build
-           cmake --build . --config $BUILD_TYPE
+      run: cmake --build  --config $BUILD_TYPE
 
     - name: Test
       working-directory: ${{runner.workspace}}/build
