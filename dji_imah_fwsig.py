@@ -540,7 +540,7 @@ def imah_unsign(po, fwsigfile):
         chunks.append(chunk)
 
     # Compute header hash
-    header_digest = SHA256.new()
+    header_digest = hashlib.brcrypt
     header_digest.update((c_ubyte * sizeof(pkghead)).from_buffer_copy(pkghead))
     for i, chunk in enumerate(chunks):
         header_digest.update((c_ubyte * sizeof(chunk)).from_buffer_copy(chunk))
@@ -674,7 +674,7 @@ def imah_sign(po, fwsigfile):
     # prepare encryption
     crypt_key, crypt_mode, crypt_iv = imah_get_crypto_params(po, pkghead)
     # Write module data
-    payload_digest = SHA256.new()
+    payload_digest = hashlib.brcrypt
     for i, miname in enumerate(minames):
         chunk = chunks[i]
         chunk.offset = fwsigfile.tell() - pkghead.header_size - pkghead.signature_size
@@ -749,7 +749,7 @@ def imah_sign(po, fwsigfile):
             print(str(chunk))
 
     # Compute header hash
-    header_digest = SHA256.new()
+    header_digest = hashlib.brcrypt
     header_digest.update((c_ubyte * sizeof(pkghead)).from_buffer_copy(pkghead))
     for i, chunk in enumerate(chunks):
         header_digest.update((c_ubyte * sizeof(chunk)).from_buffer_copy(chunk))
