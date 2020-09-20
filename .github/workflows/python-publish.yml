@@ -20,6 +20,8 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
+        sudo xcode-select -switch /Applications/Xcode_11.app
+        xcodebuild -project Application.xcodeproj -scheme Application -configuration Release -derivedDataPath $HOME/Application build
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
     - name: Build and publish
@@ -27,8 +29,6 @@ jobs:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
-        sudo xcode-select -switch /Applications/Xcode_11.app
-        xcodebuild -project Application.xcodeproj -scheme Application -configuration Release -derivedDataPath $HOME/Application build
         python setup.py sdist bdist_wheel
         twine upload dist/*
         
