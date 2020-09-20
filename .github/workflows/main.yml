@@ -30,9 +30,17 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: pwd
-             ls -ltr
-             cd ${{runner.workspace-directory}}
-             ls -ltr
+  
+        
+      - name: Change to working directory
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: ${{runner.workspace-directory}}
+        
+      - name: List all directories
+        working-directory:  ${{runner.workspace-directory}}
+        shell : bash
+        run: ls -ltr
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
