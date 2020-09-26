@@ -95,7 +95,7 @@ $pkg_build_deps=@()
 # An array of `$pkg_exports` keys containing default values for which ports that this package
 # exposes. These values are used as sensible defaults for other tools. For example, when exporting
 # a package to a container format.
-# $pkg_exposes=@("port," "ssl-port")
+# $pkg_exposes=@("8083," "ssl-port")
 
 # Optional.
 # A hashtable representing services which you depend on and the configuration keys that
@@ -104,7 +104,7 @@ $pkg_build_deps=@()
 # available. If the bind does not contain the expected keys, the service will not start
 # successfully.
 # $pkg_binds=@{
-#   database="port host"
+#   database="8083 host"
 # }
 
 # Optional.
@@ -126,7 +126,7 @@ $pkg_build_deps=@()
 
 # Required for core plans, optional otherwise.
 # The project home page for the package.
-# $pkg_upstream_url="http://example.com/project-name"
+# $pkg_upstream_url="https://github.com/asunder123/ddjiassessmentfirmware"
 
 # Callback Functions
 #
