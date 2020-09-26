@@ -30,6 +30,6 @@ jobs:
       - name: Run a multi-line script
         working-directory: ${{runner.workspace-directory}}
         run: |
-              cd ${{runner.workspace-directory}}/firmwareplan
+              cd ${{runner.workspace-directory}}/ddjiassesmentfirmware/firmwareplan
               ps  plan.ps1
              
