@@ -14,6 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: configure
+      working-directory: :${{runner.working-directory}}
       run: ./configure
     - name: make
       run: make
