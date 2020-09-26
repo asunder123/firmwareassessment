@@ -1,6 +1,7 @@
 # firmwareplan
 
-Brief description of firmwareplan
+This plan is intended to build, test and deploy the firmware into chef habitat. This is for experimental use and reference repo for 100% functional and vulnerability test. 
+Work is still in progress as of now .
 
 ## Maintainers
 
