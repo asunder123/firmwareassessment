@@ -15,7 +15,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: configure
       working-directory: :${{runner.working-directory}}
-      run: ./configure
+      shell : bash
+      run:
+           mkdir /.configure
+           ./configure
     - name: make
       run: make
     - name: make check
