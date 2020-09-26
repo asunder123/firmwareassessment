@@ -31,5 +31,5 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         run: |
               cd ${{runner.workspace-directory}}/firmwareplan
-              run  plan.ps1
+              ps  plan.ps1
              
