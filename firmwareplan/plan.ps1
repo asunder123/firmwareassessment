@@ -62,7 +62,7 @@ $pkg_build_deps=@()
 # Optional.
 # An array of paths, relative to the final install of the software, where
 # libraries can be found for native builds.
-# $pkg_lib_dirs=@("lib")
+$pkg_lib_dirs=@("lib")
 
 # Optional.
 # An array of paths, relative to the final install of the software, where
@@ -109,24 +109,24 @@ $pkg_svc_run="MyBinary.exe"
 
 # Optional.
 # Same as `$pkg_binds` but these represent optional services to connect to.
-# $pkg_binds_optional=@{
-#   storage="port host"
-# }
+$pkg_binds_optional=@{
+  storage="port host"
+}
 
 # Optional.
 # The number of seconds to wait for a service to shutdown. After this interval
 # the service will forcibly be killed. The default is 8.
-# $pkg_shutdown_timeout_sec=8
+ $pkg_shutdown_timeout_sec=8
 
 # Required for core plans, optional otherwise.
 # A short description of the package. It can be a simple string, or you can
 # create a multi-line description using markdown to provide a rich description
 # of your package.
-# $pkg_description="Some description."
+ $pkg_description="Some description."
 
 # Required for core plans, optional otherwise.
 # The project home page for the package.
-# $pkg_upstream_url="https://github.com/asunder123/ddjiassessmentfirmware"
+ $pkg_upstream_url="https://github.com/asunder123/ddjiassessmentfirmware"
 
 # Callback Functions
 #
@@ -144,7 +144,7 @@ $pkg_svc_run="MyBinary.exe"
 #
 # The default implementations (the Invoke-Default* functions) are defined in the
 # plan build script:
-# https://github.com/habitat-sh/habitat/tree/master/components/plan-build-ps1/bin/hab-plan-build.ps1
+https://github.com/habitat-sh/habitat/tree/master/components/plan-build-ps1/bin/hab-plan-build.ps1
 
 # The default implmentation does nothing. You can use it to execute any
 # arbitrary commands before anything else happens.
@@ -207,9 +207,10 @@ function Invoke-Check {}
 
 # There is no default implementation of this callback. Typically you will override
 # this callback to copy the compiled binaries or libraries in
-# $HAB_CACHE_SRC_PATH/$pkg_dirname to $pkg_prefix.
+#$HAB_CACHE_SRC_PATH/$pkg_dirname to $pkg_prefix.
 function Invoke-Install {
   Invoke-DefaultInstall
+  mv $HAB_CACHE_SRC_PATH/$pkg_dirname  $pkg_prefix
 }
 
 # The default implmentation does nothing. This is called after the package has
