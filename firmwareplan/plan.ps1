@@ -27,19 +27,19 @@ $pkg_license=@("Apache-2.0")
 
 # Optional.
 # The scaffolding base for this plan.
-# $pkg_scaffolding="some/scaffolding"
+$pkg_scaffolding="some/scaffolding"
 
 # Optional.
 # A URL that specifies where to download the source from. Any valid wget url
 # will work. Typically, the relative path for the URL is partially constructed
 # from the pkg_name and pkg_version values; however, this convention is not
 # required.
-# $pkg_source="http://some_source_url/releases/$pkg_name-$pkg_version.zip"
+$pkg_source="http://some_source_url/releases/$pkg_name-$pkg_version.zip"
 
 # Optional.
 # The resulting filename for the download, typically constructed from the
 # pkg_name and pkg_version values.
-# $pkg_filename="$pkg_name-$pkg_version.zip"
+$pkg_filename="$pkg_name-$pkg_version.zip"
 
 # Required if a valid URL is provided for pkg_source or unless Invoke-Verify is overridden.
 # The value for pkg_shasum is a sha-256 sum of the downloaded pkg_source. If you
@@ -67,35 +67,35 @@ $pkg_build_deps=@()
 # Optional.
 # An array of paths, relative to the final install of the software, where
 # headers can be found.
-# $pkg_include_dirs=@("include")
+$pkg_include_dirs=@("include")
 
 # Optional.
 # An array of paths, relative to the final install of the software, where
 # binaries can be found. Used to populate $ENV:PATH for software that depends on
 # your package.
-# $pkg_bin_dirs=@("bin")
+$pkg_bin_dirs=@("bin")
 
 # Optional.
 # The command for the Supervisor to execute when starting a service. You can
 # omit this setting if your package is not intended to be run directly by a
 # Supervisor of if your plan contains a run hook in hooks/run.
-# $pkg_svc_run="MyBinary.exe"
+$pkg_svc_run="MyBinary.exe"
 
 # Optional.
 # A hashtable representing configuration data which should be gossiped to peers. The keys
 # in this hashtable represent the name the value will be assigned and the values represent the toml path
 # to read the value.
-# $pkg_exports=@{
-#   host="srv.address"
-#   port="srv.port"
-#   ssl-port="srv.ssl.port"
-# }
+ $pkg_exports=@{
+   host="srv.address"
+   port="srv.port"
+   ssl-port="srv.ssl.port"
+ }
 
 # Optional.
 # An array of `$pkg_exports` keys containing default values for which ports that this package
 # exposes. These values are used as sensible defaults for other tools. For example, when exporting
 # a package to a container format.
-# $pkg_exposes=@("8083," "ssl-port")
+ $pkg_exposes=@("8083," "ssl-port")
 
 # Optional.
 # A hashtable representing services which you depend on and the configuration keys that
@@ -103,9 +103,9 @@ $pkg_build_deps=@()
 # Supervisor to load the service. The loaded service will wait to run until it's bind becomes
 # available. If the bind does not contain the expected keys, the service will not start
 # successfully.
-# $pkg_binds=@{
-#   database="8083 host"
-# }
+ $pkg_binds=@{
+  database="8083 host"
+ }
 
 # Optional.
 # Same as `$pkg_binds` but these represent optional services to connect to.
