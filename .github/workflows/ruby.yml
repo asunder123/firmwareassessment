@@ -31,6 +31,6 @@ jobs:
     #  run: bundle install
     - name: Run tests
       shell : bash
-      run: cd home/runner/work/${{runner.workingdirectory}}
+      run: cd usr/bin
            bundle exec rake
       
