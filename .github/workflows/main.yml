@@ -35,7 +35,7 @@ jobs:
       - name: Change to working directory
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: ${{runner.workspace-directory}}
+        run: cd ${{runner.workspace-directory}}
         
       - name: List all directories
         working-directory:  ${{runner.workspace-directory}}
