@@ -43,8 +43,13 @@ jobs:
         run: ls -ltr
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Build a Docker file 
         working-directory: ${{runner.workspace-directory}}/*.py
         shell: bash
         run: docker build -t python-barcode
+
+      - name: Run a Docker Image Created
+        working-directory: ${{runner.workspace-directory}}/*.py
+        shell: bash
+        run: docker run python-barcode
 
