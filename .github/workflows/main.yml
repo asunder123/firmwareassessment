@@ -44,12 +44,12 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build a Docker file 
-        working-directory: ${{runner.workspace-directory}}/*.py
+        working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker build -t python-barcode
+        run: docker build -t python-barcode *.py
 
       - name: Run a Docker Image Created
-        working-directory: ${{runner.workspace-directory}}/*.py
+        working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run python-barcode
+        run: docker run -p 8083
 
