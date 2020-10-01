@@ -203,7 +203,9 @@ function Invoke-Build {
 # The default implementation runs nothing during post-compile. To use this callback, two
 # conditions must be true. A) Invoke-Check function has been declared, B) DO_CHECK
 # environment variable exists and set to true, $ENV:DO_CHECK=$true.
-function Invoke-Check {}
+function Invoke-Check {
+Invoke-DefaultCheck
+}
 
 # There is no default implementation of this callback. Typically you will override
 # this callback to copy the compiled binaries or libraries in
