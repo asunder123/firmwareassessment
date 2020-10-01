@@ -7,6 +7,6 @@
         "*test.py"
     ],
     "python.testing.pytestEnabled": true,
-    "python.testing.nosetestsEnabled": true,
+    "python.testing.nosetestsEnabled": false,
     "python.testing.unittestEnabled": true
 }
