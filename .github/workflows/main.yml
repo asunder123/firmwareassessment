@@ -46,7 +46,7 @@ jobs:
       - name: Build a Docker file 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker build -t python-barcode 
+        run: docker build -t python-barcode .
 
       - name: Run a Docker Image Created
         working-directory: ${{runner.workspace-directory}}
