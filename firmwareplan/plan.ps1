@@ -6,11 +6,11 @@
 # and `$pkg_version` to define the fully-qualified package name, which determines
 # where the package is installed to on disk, how it is referred to in package
 # metadata, and so on.
-$pkg_name="firmwareplan"
+$pkg_name="ddjiassesmentfirmware"
 
 # Required unless overridden by the `HAB_ORIGIN` environment variable.
 # The origin is used to denote a particular upstream of a package.
-$pkg_origin="src"
+#$pkg_origin="src"
 
 # Required.
 # Sets the version of the package
@@ -79,7 +79,7 @@ $pkg_bin_dirs=@("bin")
 # The command for the Supervisor to execute when starting a service. You can
 # omit this setting if your package is not intended to be run directly by a
 # Supervisor of if your plan contains a run hook in hooks/run.
-$pkg_svc_run="MyBinary.exe"
+# $pkg_svc_run="MyBinary.exe"
 
 # Optional.
 # A hashtable representing configuration data which should be gossiped to peers. The keys
@@ -95,7 +95,7 @@ $pkg_svc_run="MyBinary.exe"
 # An array of `$pkg_exports` keys containing default values for which ports that this package
 # exposes. These values are used as sensible defaults for other tools. For example, when exporting
 # a package to a container format.
- $pkg_exposes=@("8083," "ssl-port")
+ $pkg_exposes=@("8084," "ssl-port")
 
 # Optional.
 # A hashtable representing services which you depend on and the configuration keys that
@@ -104,7 +104,7 @@ $pkg_svc_run="MyBinary.exe"
 # available. If the bind does not contain the expected keys, the service will not start
 # successfully.
  $pkg_binds=@{
-  database="8083 host"
+  database="8085 host"
  }
 
 # Optional.
@@ -116,7 +116,7 @@ $pkg_binds_optional=@{
 # Optional.
 # The number of seconds to wait for a service to shutdown. After this interval
 # the service will forcibly be killed. The default is 8.
- $pkg_shutdown_timeout_sec=8
+ $pkg_shutdown_timeout_sec=60
 
 # Required for core plans, optional otherwise.
 # A short description of the package. It can be a simple string, or you can
