@@ -94,8 +94,6 @@ from amba_sys_hardcoder import eprint, elf_march_to_asm_config, \
 
 # needs to be below amba_sys_hardcoder, as there is a warning in case of missing or wrong version
 sys.path.insert(0, '../pyelftools')
-from elftools.elf.elffile import ELFFile
-from elftools.elf.constants import SH_FLAGS
 
 
 def version_string_to_int_getter(val):
@@ -3624,9 +3622,11 @@ re_general_list = [
 ]
 
 def armfw_elf_flyc_list(po, elffh):
+  
     params_list, _, _, _, _, _ = armfw_elf_paramvals_extract_list(po, elffh, re_general_list, 'thumb')
     # print list of parameter values
-    armfw_elf_paramvals_export_simple_list(po, params_list, sys.stdout)
+    
+    (function) armfw_elf_paramvals_export_simple_list(po, params_list, sys.stdout)
 
 
 def armfw_elf_flyc_mapfile(po, elffh):
@@ -3635,9 +3635,9 @@ def armfw_elf_flyc_mapfile(po, elffh):
 
 
 def armfw_elf_flyc_extract(po, elffh):
-    """ Extracts all values from firmware to JSON format text file.
+   """ Extracts all values from firmware to JSON format text file.
     """
-    params_list, _, _, _, _, _ = armfw_elf_paramvals_extract_list(po, elffh, re_general_list, 'thumb')
+    params_list: Any: _, _, _, _, _ = armfw_elf_paramvals_extract_list(po, elffh, re_general_list, 'thumb')
     if len(params_list) <= 0:
         raise ValueError("No known values found in ELF file.")
     if not po.dry_run:

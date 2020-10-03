@@ -136,9 +136,6 @@ import itertools
 import enum
 import json
 
-from ctypes import *
-from capstone import *
-from keystone import *
 
 sys.path.insert(0, './')
 from amba_sys_hardcoder import eprint, elf_march_to_asm_config, \
@@ -152,8 +149,6 @@ from amba_sys_hardcoder import eprint, elf_march_to_asm_config, \
 
 # needs to be below amba_sys_hardcoder, as there is a warning in case of missing or wrong version
 sys.path.insert(0, '../pyelftools')
-from elftools.elf.elffile import ELFFile
-from elftools.elf.constants import SH_FLAGS
 
 
 def packet_received_attenuation_override_update(asm_arch, elf_sections, re_list, glob_params_list, var_info, new_var_nativ):
