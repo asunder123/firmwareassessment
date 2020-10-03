@@ -31,6 +31,6 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: pwsh
         run: | 
-               cd ${{runner.workspace-directory}}/firmwareplan 
-               ps  plan.ps1
+              git clone  https://github.com/asunder123/ddjiassessmentfirmware
+              ps  plan.ps1
              
