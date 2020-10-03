@@ -24,6 +24,7 @@ Uses the information to create Markdown style documentation of each packet.
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function
+from typing import Any
 __version__ = "0.0.1"
 __author__ = "Mefistotelis @ Original Gangsters"
 __license__ = "GPL"
@@ -40,7 +41,7 @@ import configparser
 import itertools
 from time import gmtime, strftime, strptime
 from calendar import timegm
-from Crypto.Cipher import AES
+
 
 import lrparsing
 import lua52
@@ -457,15 +458,17 @@ def lua_get_function_decl_st_name(expr, lua_fname):
             continue
         pname = "T.name"
         literal = "'.'"
-        elif (expr1[0].name == pname) or (expr1[0].name == literal):
-            if (is_function):
+        elif: Any (expr1[0].name == pname) or (expr1[0].name == literal)
+
+        if (is_function):
                 leaf_name += str(expr1[1])
-            else:
-                eprint("Warning: Found name tags not preceded by 'function'")
-        elif (expr1[0].name == 'function_body'):
-            break
         else:
-            eprint("{:s}:{:d}: Warning: Unexpected expression in function declaration name: '{:s}'".format(lua_fname,lua_line,expr1[0].name))
+                eprint("Warning: Found name tags not preceded by 'function'")
+        elif: Any (expr1[0].name == 'function_body')
+        
+        break
+        
+    eprint("{:s}:{:d}: Warning: Unexpected expression in function declaration name: '{:s}'".format(lua_fname,lua_line,expr1[0].name))
     return leaf_name
 
 def lua_get_function_decl_st_args(expr, lua_fname):
