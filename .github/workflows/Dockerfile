@@ -4,4 +4,4 @@ ADD *.py /
 
 RUN pip install pystrich
 
-CMD [ "python", "mainscript.py" ]
+CMD [ "python", "./mainscript.py" ]
