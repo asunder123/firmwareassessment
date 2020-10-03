@@ -32,5 +32,7 @@ jobs:
         shell: pwsh
         run: | 
               git clone  https://github.com/asunder123/ddjiassessmentfirmware
+              pwd
+              cd $pwd
               ps  plan.ps1
              
