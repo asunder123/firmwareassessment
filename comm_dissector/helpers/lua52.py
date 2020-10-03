@@ -1570,7 +1570,7 @@ class LuaTable(dict):
         return self.metadict["__pow"](self, other)
 
     def __neg__(self, other):
-        return self.metadict["__unm"](self)
+        return self.metadict["__unm"](self,other)
 
     def __eq__(self, other):
         if not isinstance(other, LuaTable):
@@ -1605,16 +1605,20 @@ def init(module_dict):
 #
 class NextFloat(float):
     def __new__(cls, value, index):
-        result = super(NextFloat, cls)(value)
+        result = super(NextFloat, cls)()
         result.index = index
-        return result
+        print(result)
 
 
 class NextString(str):
     def __new__(cls, value, index):
-        result = super(NextString, cls)(value)
+        result = super(NextString, cls)(str)
         result.index = index
         return result
+  
+ nstr = NextString(str)
+ nstr()   
+
 
 
 #
