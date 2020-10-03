@@ -21,6 +21,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function
+from ctypes import LittleEndianStructure, c_int, c_uint, sizeof
 import sys
 if sys.version_info < (3, 0):
     # All checksums would have to be computed differently on Python 2.x
@@ -29,12 +30,12 @@ if sys.version_info < (3, 0):
 import getopt
 import re
 import os
-import hashlib
 import mmap
 import zlib
 import configparser
 import itertools
-from ctypes import *
+import ctypes
+
 from time import gmtime, strftime
 
 def eprint(*args, **kwargs):
@@ -127,7 +128,7 @@ class FwModEntry(LittleEndianStructure):
 
 class FwModA9PostHeader(LittleEndianStructure):
   _pack_ = 1
-  _fields_ = [('part_size', c_uint * 15)]
+  _fields_ = [('part_size', c_int * 15)]
 
   def dict_export(self):
     d = dict()
