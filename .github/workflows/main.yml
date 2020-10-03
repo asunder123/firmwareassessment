@@ -52,4 +52,9 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker run python-barcode
-
+      
+      - name: List running docker images
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker ps -a 
+        
