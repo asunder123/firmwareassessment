@@ -56,5 +56,9 @@ jobs:
       - name: List running docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker ps -a 
+        run: | 
+              echo Present Working directory!
+              pwd
+              echo List docker containers !
+              docker ps 
         
