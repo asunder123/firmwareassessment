@@ -215,6 +215,14 @@ function Invoke-Install {
   mv $HAB_CACHE_SRC_PATH/$pkg_dirname  $pkg_prefix
 }
 
+function pkg_version {
+  # Extract the build date of the certificates file
+  $matchStr = "### Certificate data from Mozilla as of: "
+  foreach($line in (Get-Content "$HAB_CACHE_SRC_PATH/$pkg_filename")) {
+    if($line.StartsWith($matchStr)) {
+      $build_date = $line.Substring($matchStr.Length)
+    }
+  }
 # The default implmentation does nothing. This is called after the package has
 # been built and installed. You can use this callback to remove any temporary
 # files or perform other post-install clean-up actions.
