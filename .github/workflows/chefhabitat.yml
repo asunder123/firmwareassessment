@@ -36,7 +36,7 @@ jobs:
       - name: Change to Current working Directory
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run:  cd pwd
+        run:  cd $pwd
         
       - name: Run Chef habitat plan
         working-directory: ${{runner.workspace-directory}}/firmwareplan
