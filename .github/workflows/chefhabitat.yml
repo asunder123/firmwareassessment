@@ -41,7 +41,9 @@ jobs:
       - name: Run Chef habitat plan
         working-directory: ${{runner.workspace-directory}}/firmwareplan
         shell: pwsh
-        run:  ps plan.ps1
+        run:  |
+                cd  ${{runner.workspace-directory}}/firmwareplan
+                ps plan.ps1
         
         
       
