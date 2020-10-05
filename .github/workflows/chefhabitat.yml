@@ -27,12 +27,22 @@ jobs:
         run: echo Starting Chef Habitat!
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Clone repo
         working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: git clone  https://github.com/asunder123/ddjiassessmentfirmware
+        
+           # Runs a set of commands using the runners shell
+      - name: Change to Current working Directory
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run:  cd pwd
+        
+      - name: Run Chef habitat plan
+        working-directory: ${{runner.workspace-directory}}/firmwareplan
         shell: pwsh
-        run: | 
-              git clone  https://github.com/asunder123/ddjiassessmentfirmware
-              pwd
-              cd $pwd
-              ps  plan.ps1
+        run:  ps ps1
+        
+        
+      
              
