@@ -48,12 +48,15 @@ jobs:
         shell: bash
         run: docker build -t python-barcode .
 
-      - name: Run a Docker Image Created
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: docker run python-barcode
+    
       
       - name: List running docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker build  .
+        
+        
+      - name: Run a Docker Image Created
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker run .
