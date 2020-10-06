@@ -56,5 +56,4 @@ jobs:
       - name: List running docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker ps -q -a 
-        
+        run: docker build  .
