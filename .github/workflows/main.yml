@@ -42,11 +42,7 @@ jobs:
         shell : bash
         run: ls -ltr
 
-      # Runs a set of commands using the runners shell
-      - name: Build a Docker file 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: docker build -t python-barcode .
+
 
     
       
