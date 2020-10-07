@@ -46,13 +46,13 @@ jobs:
 
     
       
-      - name: List running docker images
+      - name: Build a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker build  .
         
         
-      - name: Run a Docker Image Created
+      - name: List docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run --name Dockerfile
+        run: docker images 
