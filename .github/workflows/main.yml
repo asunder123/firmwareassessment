@@ -89,7 +89,7 @@ jobs:
       - name: Docker run telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run --rm telegraf telegraf config> telegraf.conf
+        run: docker run --rm telegraf telegraf config>telegraf.conf
         
       - name: List Directories recursively
         working-directory: ${{runner.workspace-directory}}
