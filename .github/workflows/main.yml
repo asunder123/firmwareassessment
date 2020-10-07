@@ -56,3 +56,8 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker images 
+        
+      - name: Docker initialize application
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker app init 
