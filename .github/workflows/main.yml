@@ -105,7 +105,7 @@ jobs:
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
+        run: sudo docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
            
               
         
