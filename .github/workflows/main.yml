@@ -88,6 +88,6 @@ jobs:
         
       - name: Docker run telegraf
         working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: docker run  -p 8083:8083 docker.io/library/telegraf:latest
+        shell: sh
+        run: sudo docker run  -p 8083:8083 docker.io/library/telegraf:latest
             
