@@ -90,10 +90,7 @@ jobs:
         shell: bash
         run: docker pull telegraf
         
-      - name: Docker remove telegraf
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: docker run --rm -f telegraf telegraf config>telegraf.conf
+
         
       - name: List Directories recursively
         working-directory: ${{runner.workspace-directory}}
