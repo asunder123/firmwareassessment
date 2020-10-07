@@ -55,4 +55,4 @@ jobs:
       - name: Run a Docker Image Created
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run --name * --rm -i -t *
+        run: docker run --name Dockerfile
