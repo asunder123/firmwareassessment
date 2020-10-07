@@ -81,5 +81,13 @@ jobs:
         shell: bash
         run: docker run node:10 -p 8085
         
-            
+      - name: Docker pull telegraf
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker pull telegraf
+        
+      - name: Docker run telegraf
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker run --net=container:influxdb telegraf
             
