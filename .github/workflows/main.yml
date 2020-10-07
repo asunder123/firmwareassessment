@@ -60,4 +60,6 @@ jobs:
       - name: Docker initialize application
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker app init 
+        run: |
+              docker app init ddjiassesmentfirmware
+              docker app list
