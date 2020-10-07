@@ -89,5 +89,5 @@ jobs:
       - name: Docker run telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run -d --name influxdb -p 8086:8086 influxdb
+        run: docker run telegraf:latest
             
