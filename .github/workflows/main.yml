@@ -61,6 +61,5 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              docker 
               docker run python:3
               docker run alpine:*
