@@ -42,15 +42,18 @@ jobs:
         shell : bash
         run: ls -ltr
 
-
+      - name: Login to DockerHub
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker login -u asunder123 -p Docker@123
 
     
       
       - name: Build a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker build  .
-        
+        run: docker build .
+    
         
       - name: List docker images
         working-directory: ${{runner.workspace-directory}}
@@ -77,5 +80,6 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker run node:10 -p 8085
+        
             
             
