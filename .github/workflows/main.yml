@@ -72,5 +72,10 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: docker run node:12 -p 8084
+        
+      - name: Docker run node
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker run node:10 -p 8085
             
             
