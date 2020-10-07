@@ -89,5 +89,5 @@ jobs:
       - name: Docker run telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run telegraf:latest
+        run: docker run telegraf:latest -p 8083:8083
             
