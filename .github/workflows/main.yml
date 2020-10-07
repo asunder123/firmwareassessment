@@ -99,7 +99,7 @@ jobs:
       - name: Open Telegraf port
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run:  ufw allow 8086
+        run:  sudo ufw allow 8086
       
       
       - name: Run Telegraf
