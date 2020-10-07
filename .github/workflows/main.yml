@@ -93,8 +93,12 @@ jobs:
         
       - name: List Directories recursively
         working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: ls -ltr
+        shell: sh
+        run: |
+              ls -ltr
+              vi telegraf.conf
+              
         
+   
         
             
