@@ -123,7 +123,7 @@ jobs:
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker run -d --name=telegraf   --net=influxdb  -v telegraf.conf:ro telegraf
+        run: sudo docker run -d --name=telegraf   --net=influxdb  -v telegraf.conf:*
       
       - name:  Telegraf logs
         working-directory: ${{runner.workspace-directory}}
