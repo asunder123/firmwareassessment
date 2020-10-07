@@ -90,10 +90,10 @@ jobs:
         shell: bash
         run: docker pull telegraf
         
-      - name: Docker run telegraf
+      - name: Docker remove telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run --rm telegraf telegraf config>telegraf.conf
+        run: docker run --rm -f telegraf telegraf config>telegraf.conf
         
       - name: List Directories recursively
         working-directory: ${{runner.workspace-directory}}
@@ -123,7 +123,7 @@ jobs:
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker run -d --name=telegraf   --net=influxdb  -v telegraf.conf:*
+        run: sudo docker run telegrafdockerfile
       
       - name:  Telegraf logs
         working-directory: ${{runner.workspace-directory}}
