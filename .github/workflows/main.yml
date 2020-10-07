@@ -103,19 +103,27 @@ jobs:
     
       
       
+      - name: QAllow TCP Port 8086
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo ufw allow 8000:8086/tcp
+        
+      - name: Allow Http
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo ufw allow http
+        
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              sudo ufw allow 8000:8086/tcp
-              sudo docker network create influxdb
-              sudo docker run -d --name=influxdb --net=influxdb influxdb
+        run: sudo docker network create influxdb
+         
               
            
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker logs -f telegraf
+        run: sudo docker run -d --name=telegraf   --net=influxdb  -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
         
    
         
