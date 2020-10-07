@@ -59,4 +59,4 @@ jobs:
       - name: Run a Docker Image Created
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run -p 8084:8084 
+        run: docker run 64859cea7481 
