@@ -108,6 +108,7 @@ jobs:
         shell: bash
         run: |
               sudo ufw allow 8000:8086/tcp
+              sudo docker network create influxdb
               sudo docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
               
            
