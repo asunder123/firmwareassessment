@@ -96,15 +96,12 @@ jobs:
         shell: bash
         run:  ls -ltr
         
-      - name: View telegraf.conf file
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run:  vi telegraf.conf
       
-      - name: Exit shell 
+      
+      - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: exit
+        run: docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
            
               
         
