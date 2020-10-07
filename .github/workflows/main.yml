@@ -62,4 +62,4 @@ jobs:
         shell: bash
         run: |
               docker run python:3
-              docker run alpine:*
+              docker run alpine:3.9
