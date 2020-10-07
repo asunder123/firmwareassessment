@@ -88,6 +88,13 @@ jobs:
         
       - name: Docker run telegraf
         working-directory: ${{runner.workspace-directory}}
-        shell: sh
-        run: sudo docker run  -p 8083:8083 docker.io/library/telegraf:latest
+        shell: bash
+        run: docker run --rm telegraf telegraf config> telegraf.conf
+        
+      - name: List Directories recursively
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: ls -ltr
+        
+        
             
