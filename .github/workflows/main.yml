@@ -112,7 +112,10 @@ jobs:
               sudo docker run -d --name=influxdb --net=influxdb influxdb
               
            
-              
+      - name: Run Telegraf
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo docker logs -f telegraf
         
    
         
