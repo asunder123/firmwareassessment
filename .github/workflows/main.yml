@@ -60,6 +60,17 @@ jobs:
       - name: Docker run python file 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              docker run python:3
-              docker run alpine:3.9
+        run: docker run python:3
+       
+      - name: Docker run alpine file 
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker run alpine:3.8   
+        
+        
+      - name: Docker run node
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: docker run node:12 -p 8084
+            
+            
