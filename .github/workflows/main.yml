@@ -57,4 +57,4 @@ jobs:
         shell: bash
         run: | 
                docker login localhost:8084
-               docker run -v -p 8084:8084
+               docker run -v -t -p 8084
