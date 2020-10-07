@@ -107,8 +107,9 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              sudo docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
               sudo ufw allow 8000:8086/tcp
+              sudo docker run -v $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
+              
            
               
         
