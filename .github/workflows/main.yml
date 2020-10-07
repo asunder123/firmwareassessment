@@ -57,9 +57,7 @@ jobs:
         shell: bash
         run: docker images 
         
-      - name: Docker initialize application
+      - name: Docker run python file 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              docker app init ddjiassesmentfirmware
-              docker app list
+        run: docker run python:3
