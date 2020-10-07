@@ -94,9 +94,18 @@ jobs:
       - name: List Directories recursively
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              ls -ltr
-              vi telegraf.conf
+        run:  ls -ltr
+        
+      - name: View telegraf.conf file
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run:  vi telegraf.conf
+      
+      - name: Exit shell 
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: exit
+           
               
         
    
