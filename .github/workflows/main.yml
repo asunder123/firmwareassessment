@@ -55,4 +55,6 @@ jobs:
       - name: Run a Docker Image Created
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run -v -p 8084:8084
+        run: | 
+               docker login localhost:8084
+               docker run -v -p 8084:8084
