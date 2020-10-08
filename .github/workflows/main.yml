@@ -122,10 +122,13 @@ jobs:
        # shell: bash
        # run: sudo docker run telegraf
       
-      - name:  Telegraf logs
+      - name:  Consul logs
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker logs -f *
+        run: |
+              docker pull consul
+              docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
+              docker exec -t dev-consul consul members
       
             
         
