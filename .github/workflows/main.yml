@@ -88,7 +88,9 @@ jobs:
       - name: Docker pull telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker pull telegraf
+        run: |
+              docker pull telegraf
+              docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
         
 
         
@@ -129,7 +131,7 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
-              netstat -an | grep 8500
+              netstat -a
 
       
             
