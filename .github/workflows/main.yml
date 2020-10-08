@@ -130,7 +130,7 @@ jobs:
               sudo docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.2
               sudo docker exec -t dev-consul consul members
               sudo curl http://localhost:8500/v1/health/service/consul?pretty
-[
+
       
             
         
