@@ -125,7 +125,7 @@ jobs:
       - name:  Telegraf logs
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker logs -f influxdb
+        run: sudo docker logs -f *
       
             
         
