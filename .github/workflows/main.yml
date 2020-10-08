@@ -129,7 +129,7 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t -ui dev-consul consul members
-              curl http://localhost:8500/v1/health/service/consul?pretty
+              netstat -an | grep 8500
 
       
             
