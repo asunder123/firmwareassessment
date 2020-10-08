@@ -127,7 +127,7 @@ jobs:
         shell: bash
         run: |
               docker pull consul
-              docker run -d --net=host -e 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}' consul agent -bind=<external ip> -retry-join=<root agent ip>
+              docker run -d --net=host -e 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}' consul agent -bind=127.0.0.1 -retry-join=127.0.0.1
               docker exec -t dev-consul consul members
       
             
