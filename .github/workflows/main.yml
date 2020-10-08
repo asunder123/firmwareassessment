@@ -126,10 +126,10 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              sudo docker pull consul
-              sudo docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.2
-              sudo docker exec -t dev-consul consul members
-              sudo curl http://localhost:8500/v1/health/service/consul?pretty
+              docker pull consul
+              docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
+              docker exec -t dev-consul consul members
+              curl -I http://localhost:8500/v1/health/service/consul?pretty
 
       
             
