@@ -85,12 +85,16 @@ jobs:
         shell: bash
         run: docker run node:10 -p 8085
         
-      - name: Docker pull telegraf
+      - name: Fetch influxdb
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              docker pull telegraf
-              docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
+        run: docker pull influxdb
+        
+      - name: Docker run telegraf 
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run:  docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
+             
         
 
         
