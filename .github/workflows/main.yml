@@ -120,7 +120,7 @@ jobs:
       - name: Run Telegraf
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker run --net=container:influxdb telegraf
+        run: sudo docker run telegraf
       
       - name:  Telegraf logs
         working-directory: ${{runner.workspace-directory}}
