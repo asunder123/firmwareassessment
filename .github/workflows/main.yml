@@ -128,7 +128,7 @@ jobs:
        # shell: bash
        # run: sudo docker run telegraf
       
-      - name:  Consul logs
+      - name:  Consul logs & Dynatrace monitoring
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
@@ -137,6 +137,7 @@ jobs:
               docker exec -t  dev-consul consul members
               docker ps -a 
               docker netstat -ano
+              wget -O Dynatrace-ActiveGate-Linux-x86-1.201.92.sh "https://tlk00961.live.dynatrace.com/api/v1/deployment/installer/gateway/unix/latest?arch=x86&flavor=default" --header="Authorization: Api-Token OUxRD5HDSQyxCDMgAvYMX"
 
       
             
