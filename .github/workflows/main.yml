@@ -92,11 +92,7 @@ jobs:
         run: sudo ufw allow 8000:8086/tcp
         
       
-      
-      - name: Fetch influxdb
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker pull influxdb
+
         
      # - name: Docker run influxdb
      #   working-directory: ${{runner.workspace-directory}}
@@ -109,11 +105,7 @@ jobs:
         shell: bash
         run: sudo ufw allow http
         
-      - name: Create influx db socket
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker network create influxdb
- 
+  
       
       - name: Consul logs 
         working-directory: ${{runner.workspace-directory}}
