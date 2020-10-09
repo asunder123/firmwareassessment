@@ -121,6 +121,11 @@ jobs:
         run:  wget  -O Dynatrace-OneAgent-Linux-1.201.129.sh "https://tlk00961.live.dynatrace.com/api/v1/deployment/installer/agent/unix/default/latest?arch=x86&flavor=default" --header="Authorization:Api-Token OUxRD5HDSQyxCDMgAvYMX"  
   
         
+      - name: Verify Dynatrace binary Signature 
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+              wget https://ca.dynatrace.com/dt-root.cert.pem ; ( echo 'Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="--SIGNED-INSTALLER"'; echo ; echo ; echo '----SIGNED-INSTALLER' ; cat Dynatrace-OneAgent-Linux-1.201.129.sh ) | openssl cms -verify -CAfile dt-root.cert.pem > /dev/null  
         
  
         
