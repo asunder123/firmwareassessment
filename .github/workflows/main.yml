@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ,*]
+    branches: [ master ]
   create:
     branches: [master]  
   pull_request:
@@ -120,13 +120,7 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: sudo docker network create influxdb
-         
-              
-           
-      #- name: Run Telegraf
-      # working-directory: ${{runner.workspace-directory}}
-       # shell: bash
-       # run: sudo docker run telegraf
+ 
       
       - name: Consul logs 
         working-directory: ${{runner.workspace-directory}}
