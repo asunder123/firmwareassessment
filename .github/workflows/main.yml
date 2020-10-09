@@ -135,7 +135,7 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
-              netstat -a
+              netstat -a 
 
       
             
