@@ -85,17 +85,7 @@ jobs:
         shell: bash
         run: docker run node:10 -p 8085
         
-      - name: Fetch influxdb
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: docker pull influxdb
-        
-      - name: Docker run telegraf 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run:  docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
-             
-        
+
 
         
       - name: List Directories recursively
@@ -110,6 +100,19 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: sudo ufw allow 8000:8086/tcp
+        
+      
+      
+      - name: Fetch influxdb
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo docker pull influxdb
+        
+      - name: Docker run influxdb
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
+             
         
       - name: Allow Http
         working-directory: ${{runner.workspace-directory}}
