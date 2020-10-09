@@ -127,6 +127,11 @@ jobs:
         run: |
               wget https://ca.dynatrace.com/dt-root.cert.pem ; ( echo 'Content-Type: multipart/signed; protocol="application/x-pkcs7-signature"; micalg="sha-256"; boundary="--SIGNED-INSTALLER"'; echo ; echo ; echo '----SIGNED-INSTALLER' ; cat Dynatrace-OneAgent-Linux-1.201.129.sh ) | openssl cms -verify -CAfile dt-root.cert.pem > /dev/null  
         
+      - name: Run Dynatrace one agent
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run:  /bin/sh Dynatrace-OneAgent-Linux-1.201.129.sh --set-app-log-content-access=true --set-infra-only=false 
+        
  
         
             
