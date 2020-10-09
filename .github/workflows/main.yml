@@ -108,10 +108,10 @@ jobs:
         shell: bash
         run: sudo docker pull influxdb
         
-      - name: Docker run influxdb
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
+     # - name: Docker run influxdb
+     #   working-directory: ${{runner.workspace-directory}}
+     #   shell: bash
+     #   run: sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
              
         
       - name: Allow Http
