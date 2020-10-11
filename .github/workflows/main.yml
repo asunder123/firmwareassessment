@@ -49,19 +49,19 @@ jobs:
       - name: Login to DockerHub
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker login - u asunder123 -p Docker@123
+        run: docker login - u asunder123 -p Docker@123
 
     
       
       - name: Build from a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker build - < Dockerfile
+        run: docker build - < Dockerfile
         
       - name: List docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker images 
+        run: docker images 
         
       - name: Docker run python file 
         working-directory: ${{runner.workspace-directory}}
