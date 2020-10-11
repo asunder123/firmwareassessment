@@ -53,16 +53,15 @@ jobs:
 
     
       
-      - name: Build a docker file
+      - name: Build from a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker build .
-    
+        run: sudo docker build - < Dockerfile
         
       - name: List docker images
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker images 
+        run: sudo docker images 
         
       - name: Docker run python file 
         working-directory: ${{runner.workspace-directory}}
