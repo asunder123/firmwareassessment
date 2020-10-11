@@ -91,6 +91,13 @@ jobs:
         shell: bash
         run: sudo ufw allow 8000:8086/tcp
         
+      - name: Allow ports
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+              sudo ufw allow 8000:8099/tcp
+              sudo ufw allow 8443/tcp
+              sudo ufw allow 999/tcp
       
 
         
