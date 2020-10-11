@@ -49,7 +49,7 @@ jobs:
       - name: Login to DockerHub
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker login -u asunder123 -p Docker@123
+        run: docker login - u asunder123 -p Docker@123
 
     
       
