@@ -130,7 +130,8 @@ jobs:
       - name: Run Dynatrace one agent
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo Dynatrace-OneAgent-Linux-1.201.129.sh --set-app-log-content-access=true --set-infra-only=false 
+        run: |
+              sudo /bin/sh Dynatrace-OneAgent-Linux-1.201.129.sh --set-app-log-content-access=true --set-infra-only=false 
         
  
         
