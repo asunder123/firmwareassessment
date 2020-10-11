@@ -1,6 +1,6 @@
 FROM python:3
-EXPOSE 8084
-ADD *.py /
+EXPOSE 8087
+ADD comm_og_service_tool.py .py /
 
 RUN pip install pystrich
 
