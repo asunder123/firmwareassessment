@@ -35,7 +35,19 @@ jobs:
        # working-directory: ${{runner.workspace-directory}}
        # shell: bash
         #run:  sudo ufw allow 8000:8086/tcp
-         
+      - name: QAllow TCP Port 8086
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo ufw allow 8000:8086/tcp  
+          
+      - name: Allow ports
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+              sudo ufw allow 8000:8099/tcp
+              sudo ufw allow 8443/tcp
+              sudo ufw allow 999/tcp
+              
       - name: Change to working directory
         working-directory: ${{runner.workspace-directory}}
         shell: bash
@@ -56,7 +68,7 @@ jobs:
       - name: Build from a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker build - < Dockerfile
+        run: sudo docker build   .
         
       - name: List docker images
         working-directory: ${{runner.workspace-directory}}
@@ -66,12 +78,12 @@ jobs:
       - name: Docker run python file 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run python:3
+        run: sudo docker run python:3
        
       - name: Docker run alpine file 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker run alpine:3.8   
+        run: sudo docker run alpine:3.8   
         
  
 
@@ -85,18 +97,9 @@ jobs:
     
       
       
-      - name: QAllow TCP Port 8086
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo ufw allow 8000:8086/tcp
+
         
-      - name: Allow ports
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: |
-              sudo ufw allow 8000:8099/tcp
-              sudo ufw allow 8443/tcp
-              sudo ufw allow 999/tcp
+     
       
 
         
