@@ -68,7 +68,7 @@ jobs:
       - name: Build from a docker file
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: docker build   
+        run: sudo docker build .   
         
       - name: List docker images
         working-directory: ${{runner.workspace-directory}}
