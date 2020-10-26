@@ -32,11 +32,6 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: pwd
-    
-      - name: Recursive remove
-        working-directory: ${{runner.working-directory}}
-        shell : bash
-        run: sudo rm -r ${{runner.workinfdirectory}}/*.py
         
       #- name: Open Telegraf port
        # working-directory: ${{runner.workspace-directory}}
