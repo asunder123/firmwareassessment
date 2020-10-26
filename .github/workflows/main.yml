@@ -19,6 +19,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,7 +36,7 @@ jobs:
       - name: Recursive remove
         working-directory: ${{runner.working-directory}}
         shell : bash
-        run: sudo rm -r ${{runner.workinfdirectory}}/*
+        run: sudo rm -r ${{runner.workinfdirectory}}/*.py
         
       #- name: Open Telegraf port
        # working-directory: ${{runner.workspace-directory}}
