@@ -105,13 +105,11 @@ jobs:
       
 
         
-      - name: Docker run influxdb with curl
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: |
-              sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
-              cd /var/lib/influxdb
-              curl 127.0.0.1:8086
+     # - name: Docker run influxdb with curl
+     #   working-directory: ${{runner.workspace-directory}}
+     #   shell: bash
+     #   run: |
+     #         sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
         
       - name: Allow Http
         working-directory: ${{runner.workspace-directory}}
