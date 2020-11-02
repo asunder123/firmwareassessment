@@ -129,7 +129,7 @@ jobs:
       - name: Curl to fetch consul logs 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: curl -I http://172.17.0.2:8301      
+        run: sudo curl  http://172.17.0.2:8301      
               
       #- name: Active-Gate installation
        # working-directory: ${{runner.workspace-directory}}
