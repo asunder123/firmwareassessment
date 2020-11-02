@@ -123,9 +123,8 @@ jobs:
         shell: bash
         run: |
               sudo docker pull consul
-              sudo docker run -d --name=consulagent1 --net=host consul agent --retry-join=192.168.99.100 -bind=192.168.99.101
-              sudo docker exec -t  dev-consul consul members
-              
+              sudo docker run  -p 8500:8500 -p 8600:8600/udp --name=consul consul:v0.6.4 agent -server -bootstrap -ui -client=0.0.0.0
+              sudo curl 127.0.0.1:8600     
        
         
       - name: Running processes 
