@@ -125,11 +125,7 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
-         
-      - name: Curl to fetch consul logs 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: ping -a 172.17.0.2:8301      
+       
         
       - name: Running processes 
         working-directory: ${{runner.workspace-directory}}
