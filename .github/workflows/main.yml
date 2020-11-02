@@ -105,11 +105,13 @@ jobs:
       
 
         
-      - name: Docker run influxdb
+      - name: Docker run influxdb with curl
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
-             
+        run: |
+              sudo docker run -p 8086:8086 -v $PWD:/var/lib/influxdb influxdb
+              cd /var/lib/influxdb
+              curl 127.0.0.1:8086
         
       - name: Allow Http
         working-directory: ${{runner.workspace-directory}}
@@ -147,7 +149,7 @@ jobs:
               cd /usr/local/bin
               sudo wget https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip
               sudo unzip consul_1.4.4_linux_amd64.zip sudo rm -rf consul_1.4.4_linux_amd64.zip
-              sudo ls -ltr
+              ls -ltr
         
 
                  
