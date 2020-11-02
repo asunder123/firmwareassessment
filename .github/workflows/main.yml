@@ -130,7 +130,7 @@ jobs:
       - name: Running processes 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: ps -a | grep "consul"  
+        run: ps -ax 
               
       #- name: Active-Gate installation
        # working-directory: ${{runner.workspace-directory}}
