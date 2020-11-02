@@ -125,8 +125,10 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
+              sudo chmod+ x consul
+              sudo mv consul /usr/local/bin/
               sudo consul --version 
-              sudo consul agent 
+              sudo vim /etc/hosts 
        
         
       - name: Running processes 
