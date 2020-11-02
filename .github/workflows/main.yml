@@ -131,6 +131,11 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: ps -ax 
+        
+      - name: List logs generated 
+        working-directory: /var/log
+        shell: bash
+        run: ls -ltr
               
       #- name: Active-Gate installation
        # working-directory: ${{runner.workspace-directory}}
