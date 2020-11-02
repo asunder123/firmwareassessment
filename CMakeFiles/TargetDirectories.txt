@@ -1,0 +1,2 @@
+/workspace/firmwareassessment/CMakeFiles/rebuild_cache.dir
+/workspace/firmwareassessment/CMakeFiles/edit_cache.dir
