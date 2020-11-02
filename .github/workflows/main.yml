@@ -122,13 +122,10 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              docker pull consul
-              docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
-              docker exec -t  dev-consul consul members
-              sudo chmod+ x consul
-              sudo mv consul /usr/local/bin/
-              sudo consul --version 
-              sudo vim /etc/hosts 
+              sudo docker pull consul
+              sudo docker run  -p 8500:8500 -p 8600:8600/udp --name=consul consul:v0.6.4 agent -server -bootstrap -ui -client=0.0.0.0
+              sudo docker exec -t  dev-consul consul members
+              
        
         
       - name: Running processes 
