@@ -125,6 +125,11 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
+         
+      - name: Curl to fetch consul logs 
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: curl -I http://172.17.0.2:8301      
               
       #- name: Active-Gate installation
        # working-directory: ${{runner.workspace-directory}}
