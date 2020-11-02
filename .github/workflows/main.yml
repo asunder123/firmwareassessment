@@ -125,6 +125,8 @@ jobs:
               docker pull consul
               docker run -d --name=dev-consul -e CONSUL_BIND_INTERFACE=eth0 consul
               docker exec -t  dev-consul consul members
+              sudo consul --version 
+              sudo consul agent 
        
         
       - name: Running processes 
@@ -136,18 +138,7 @@ jobs:
         working-directory: /var/log
         shell: bash
         run: ls -ltr
-              
-      - name: Consul configuration
-        working-directory: ${{runner.working-directory}}
-        shell: bash
-        run: |
-              sudo apt-get update
-              sudo apt-get install unzip sudo apt-get install tmux
-              sudo apt-get install nginx
-              cd /usr/local/bin
-              sudo wget https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip
-              sudo unzip consul_1.4.4_linux_amd64.zip sudo rm -rf consul_1.4.4_linux_amd64.zip
-              ls -ltr
+  
         
 
                  
