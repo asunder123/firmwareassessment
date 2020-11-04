@@ -1,5 +1,6 @@
 FROM jenkins/jenkins:latest
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=true
+EXPOSE 8081
 FROM python:3
 EXPOSE 8083
 ADD *.py /
