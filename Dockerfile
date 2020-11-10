@@ -1,5 +1,5 @@
-FROM ubuntu:18.04
-EXPOSE 8083
+FROM python:3
+EXPOSE 8084
 ADD *.py /
 ADD *.sh /
 RUN pip install pystrich
