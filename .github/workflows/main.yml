@@ -128,7 +128,9 @@ jobs:
       - name: Docker compose
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker-compose up --build
+        run: |
+              sudo echo madvise > /sys/kernel/mm/transparent_hugepage/enabled
+              sudo docker-compose up --build
        
         
       - name: Running processes 
