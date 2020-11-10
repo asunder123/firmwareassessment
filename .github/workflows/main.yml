@@ -135,7 +135,7 @@ jobs:
       - name: List logs generated 
         working-directory: /var/log
         shell: bash
-        run: ls -ltr
+        run: sudo cat syslog
   
         
 
