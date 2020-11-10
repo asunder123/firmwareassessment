@@ -1619,10 +1619,10 @@ def main():
   if po.svcmd == SERVICE_CMD.FlycParam:
         po.subcmd = FLYC_PARAM_CMD.from_name(po.subcmd.upper())
         do_flyc_param_request(po)
-    elif po.svcmd == SERVICE_CMD.GimbalCalib:
+  elif po.svcmd == SERVICE_CMD.GimbalCalib:
         po.subcmd = GIMBAL_CALIB_CMD.from_name(po.subcmd.upper())
         do_gimbal_calib_request(po)
-    elif po.svcmd == SERVICE_CMD.CameraCalib:
+  elif po.svcmd == SERVICE_CMD.CameraCalib:
         po.subcmd = CAMERA_CALIB_CMD.from_name(po.subcmd.upper())
         do_camera_calib_request(po)
 
