@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
 ENTRYPOINT [ "./comm_og_service_tool.py" ]
-CMD ["flask", "run"]
+CMD [ "flask", "run", "--host=127.0.0.1" ]
