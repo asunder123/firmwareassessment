@@ -1,4 +1,4 @@
-FROM python:3
+FROM ubuntu:18.04
 EXPOSE 8083
 ADD *.py /
 ADD *.sh /
