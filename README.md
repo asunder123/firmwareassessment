@@ -1,4 +1,5 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/asunder123/firmwareassessment)
 
-# This project is meant to assess and fix vulnerabilities in a  firmware application. 
-There are issues which have been resolved and some more which remain to be fixed . Aimed at retaining the functionality while improving code quality . the study and findings are still on .
+
+# This aims to address vulnerabilities, bugs and security hostpots in a drone firmware application, containerize and deploy the application using docker. 
+# Caution : The intended use is educational,there is no way to confirm the functionality of this unless a full system integration 
