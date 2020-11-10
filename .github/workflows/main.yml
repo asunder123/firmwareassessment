@@ -125,6 +125,10 @@ jobs:
               sudo docker pull consul
               sudo docker run --net=host -e CONSUL_BIND_INTERFACE=eth1 -e CONSUL_CLIENT_INTERFACE=eth1 -d consul agent -ui -server -bootstrap-expect=1
      
+      - name: Docker compose
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo docker-compose up
        
         
       - name: Running processes 
