@@ -135,7 +135,7 @@ jobs:
       - name: List logs generated 
         working-directory: /var/log
         shell: bash
-        run: sudo cat php7.3-fpm.log 
+        run: sudo cat kern.log 
   
         
 
