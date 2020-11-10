@@ -129,7 +129,7 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              sudo echo madvise > /sys/kernel/mm/transparent_hugepage/enabled
+              sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
               sudo docker-compose up --build
        
         
