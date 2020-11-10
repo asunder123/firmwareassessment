@@ -130,12 +130,12 @@ jobs:
       - name: Running processes 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: ps -ax 
+        run: sudo ps -ax | grep consul
         
       - name: List logs generated 
-        working-directory: /
+        working-directory: /var/log
         shell: bash
-        run: sudo curl http://127.0.0.1:8084
+        run: sudo ls -ltr | grep "log"
   
         
 
