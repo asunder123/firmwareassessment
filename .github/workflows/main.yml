@@ -128,7 +128,7 @@ jobs:
       - name: Docker compose
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker-compose up
+        run: sudo docker-compose up --build
        
         
       - name: Running processes 
