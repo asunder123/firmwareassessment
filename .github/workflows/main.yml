@@ -135,7 +135,7 @@ jobs:
       - name: List logs generated 
         working-directory: /var/log
         shell: bash
-        run: sudo cat syslog
+        run: sudo consul monitor -http-addr=http://127.0.0.1:8500
   
         
 
