@@ -133,9 +133,9 @@ jobs:
         run: ps -ax 
         
       - name: List logs generated 
-        working-directory: /var/log
+        working-directory: /
         shell: bash
-        run: sudo consul monitor -http-addr=http://127.0.0.1:8500
+        run: sudo curl http://127.0.0.1:8500
   
         
 
