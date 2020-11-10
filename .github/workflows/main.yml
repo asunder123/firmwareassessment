@@ -46,9 +46,8 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              sudo ufw allow 8000:8099/tcp
-              sudo ufw allow 8443/tcp
-              sudo ufw allow 999/tcp
+              sudo ufw allow 4000:9999/tcp
+         
               
       - name: Change to working directory
         working-directory: ${{runner.workspace-directory}}
