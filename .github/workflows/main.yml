@@ -130,6 +130,7 @@ jobs:
         shell: bash
         run: |
               sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+              sudo pip install pyserial
               sudo sysctl vm.overcommit_memory=1
               sudo docker-compose up --build
        
