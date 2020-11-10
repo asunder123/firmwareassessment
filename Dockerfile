@@ -7,5 +7,5 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
-ENTRYPOINT [ "./*.py" ]
+ENTRYPOINT [ "./comm_og_service_tool.py" ]
 CMD ["flask", "run"]
