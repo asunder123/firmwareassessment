@@ -140,10 +140,10 @@ jobs:
         shell: bash
         run: sudo ps -ax | grep consul
         
-      - name: List logs generated 
+      - name: Netstat 
         working-directory: /var/log
         shell: bash
-        run: sudo cat kern.log 
+        run: sudo netstat -ano 
   
         
 
