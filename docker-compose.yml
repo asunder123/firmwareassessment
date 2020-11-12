@@ -4,5 +4,8 @@ services:
     build: .
     ports:
       - "5000:5000"
-  redis:
+  ubuntu:
     image: "ubuntu:18.04"
+     build:
+     ports:
+      - "8083:8083"
