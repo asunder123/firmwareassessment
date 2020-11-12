@@ -129,14 +129,14 @@ jobs:
         shell: bash
         run: sudo docker ps -a
         
-      #- name: Docker compose
-       # working-directory: ${{runner.workspace-directory}}
-       # shell: bash
-        #run: |
-         #     sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
-          #    sudo pip3 install pyserial
-          #    sudo sysctl vm.overcommit_memory=1
-           #   sudo docker-compose up --build
+      - name: Docker compose
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+              sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
+              sudo pip3 install pyserial
+              sudo sysctl vm.overcommit_memory=3
+              sudo docker-compose up --build
        
       
         
