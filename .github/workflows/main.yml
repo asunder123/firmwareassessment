@@ -134,13 +134,9 @@ jobs:
         shell: bash
         run: |
               sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
-              sudo pip3 uninstall pyserial
-              sudo pip3 install pyserial
+              sudo python -m pip3 uninstall pyserial
               sudo sysctl vm.overcommit_memory=1
-              cd /opt
-              sudo tar -xvf ~/Downloads/pyserial-*.tar.gz -C .
-              cd /opt/pyserial-* 
-              sudo python setup.py install
+              sudo python -m pip3 install pyserial
               sudo docker-compose up --build
        
       
