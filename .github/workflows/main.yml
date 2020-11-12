@@ -135,7 +135,7 @@ jobs:
       - name: List contents of wheel directory 
         working-directory: /root/.cache/pip/wheels
         shell: bash
-        run: ls -ltr
+        run: sudo ls -ltr
   
         
 
