@@ -113,9 +113,7 @@ jobs:
       - name: Allow Http
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: |
-              sudo ufw allow http
-              sudo ufw allow https
+        run: sudo ufw allow http
         
   
       
@@ -136,18 +134,12 @@ jobs:
           #    sudo sysctl vm.overcommit_memory=1
            #   sudo docker-compose up --build
        
-        
-      - name: Running processes 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo ps -ax | grep consul
+      
         
       - name: Netstat 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: | 
-              sudo curl https://0.0.0.0:22
-              sudo netstat -ano
+        run:  sudo netstat -ano
   
         
 
