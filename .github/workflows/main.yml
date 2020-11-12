@@ -143,7 +143,9 @@ jobs:
       - name: Netstat 
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo netstat -ano 
+        run: | 
+              sudo curl http://0.0.0.0:22
+              sudo netstat -ano 
   
         
 
