@@ -137,6 +137,10 @@ jobs:
               sudo pip3 uninstall pyserial
               sudo pip3 install pyserial
               sudo sysctl vm.overcommit_memory=1
+              sudo cd /opt
+              sudo tar -xvf ~/Downloads/pyserial-*.tar.gz -C .
+              cd /opt/pyserial-* 
+              sudo python setup.py install
               sudo docker-compose up --build
        
       
