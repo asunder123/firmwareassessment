@@ -122,7 +122,7 @@ jobs:
         shell: bash
         run: |
                sudo docker pull appdynamics/cluster-agent-operator
-               sudo docker run -p 8085:8085
+               sudo docker run -d appdynamics/cluster-agent-operator 
      
       
       #- name: Docker compose
