@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
-ADD comm_og_service_tool.py /
-RUN pip install pystrich
-CMD [ "python", "./comm_og_service_tool.py" ]
+ADD *.py /
+EXPOSE 8085
 FROM python:3
 EXPOSE 8084	
 ADD comm_og_service_tool.py /
