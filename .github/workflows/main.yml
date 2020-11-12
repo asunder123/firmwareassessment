@@ -132,10 +132,7 @@ jobs:
         shell: bash
         run:  sudo netstat -ano
         
-      - name: List contents of wheel directory 
-        working-directory: /root/.cache/pip/wheels
-        shell: bash
-        run: sudo ls -ltr
+ 
   
         
 
