@@ -141,7 +141,7 @@ jobs:
         run: sudo ps -ax | grep consul
         
       - name: Netstat 
-        working-directory: /var/log
+        working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: sudo netstat -ano 
   
