@@ -137,7 +137,6 @@ jobs:
               sudo pip3 install pyserial
               sudo pip install serial
               sudo sysctl vm.overcommit_memory=1
-              sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0-rc2/dockercompose -$(uname -s) -$(uname -m)" -o /home/ubuntu/docker-compose
               sudo docker-compose up --build
        
       
