@@ -71,21 +71,7 @@ jobs:
         shell: bash
         run: sudo docker build .   
         
-      - name: List docker processes
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker ps 
-        
-      - name: Docker run python file 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker run python:3
        
-      - name: Docker run alpine file 
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: sudo docker run alpine:3.8   
-        
  
 
 
@@ -129,14 +115,14 @@ jobs:
         shell: bash
         run: sudo docker ps -a
         
-      - name: Docker compose
+      - name: Docker compose-up build
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
               sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
-              sudo python -m pip3 uninstall pyserial
+              sudo pip3 uninstall pyserial
               sudo sysctl vm.overcommit_memory=1
-              sudo python -m pip3 install pyserial
+              sudo pip3 install pyserial
               sudo docker-compose up --build
        
       
