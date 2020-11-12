@@ -131,6 +131,11 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run:  sudo netstat -ano
+        
+      - name: List contents of wheel directory 
+        working-directory: /root/.cache/pip/wheels
+        shell: bash
+        run: ls -ltr
   
         
 
