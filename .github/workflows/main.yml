@@ -117,12 +117,12 @@ jobs:
         
   
       
-      - name: Consul logs 
+      - name: AppDynamics agent
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-              sudo docker pull consul
-              sudo docker run --net=host -e CONSUL_BIND_INTERFACE=eth1 -e CONSUL_CLIENT_INTERFACE=eth1 -d consul agent -ui -server -bootstrap-expect=1
+               sudo docker pull appdynamics/cluster-agent-operator
+               sudo docker run -p 8085:8085
      
       
       #- name: Docker compose
