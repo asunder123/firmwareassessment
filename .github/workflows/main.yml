@@ -113,7 +113,9 @@ jobs:
       - name: Allow Http
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo ufw allow http
+        run: |
+              sudo ufw allow http
+              sudo ufw allow https
         
   
       
@@ -144,8 +146,8 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: | 
-              sudo curl http://0.0.0.0:22
-              sudo netstat -ano 
+              sudo curl https://0.0.0.0:22
+              sudo netstat -ano
   
         
 
