@@ -6,6 +6,4 @@ services:
       - "5000:5000"
   ubuntu:
    image: "ubuntu:18.04"
-    build:
-    ports:
-      - "8083:8083"
+
