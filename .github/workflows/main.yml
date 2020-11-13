@@ -122,7 +122,8 @@ jobs:
               sudo sh -c 'echo never > /sys/kernel/mm/transparent_hugepage/enabled'
               sudo pip3 uninstall pyserial
               sudo sysctl vm.overcommit_memory=1
-              sudo pip3 install pyserial
+              sudo pip3 install 
+              sudo pip install python-can
               sudo docker-compose up --build
        
       
