@@ -110,7 +110,8 @@ jobs:
                sudo docker pull appdynamics/cluster-agent-operator
                sudo docker run -d appdynamics/cluster-agent-operator
                sudo docker swarm init --advertise-addr eth0
-               sudo docker swarm join --token SWMTKN-1-682cndh967wftvy0t4iiqi2ptnrdtb5p6ldzmrupm78arsufyk-3322eoa40weaqi2wvs0z3sox8 10.1.0.4:2377
+               sudo docker swarm join-token manager
+               sudo docker node ls 
      
       - name: List docker processes
         working-directory: ${{runner.workspace-directory}}
