@@ -131,6 +131,7 @@ jobs:
         shell: bash
         run: |
               sudo docker swarm init --advertise-addr eth0
+              sudo docker swarm join-token manage
               sudo docker events -f type=node
      
     
