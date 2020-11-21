@@ -111,7 +111,7 @@ jobs:
                sudo docker run -d appdynamics/cluster-agent-operator
                sudo docker swarm init --advertise-addr eth0
                sudo docker swarm join-token manager
-               sudo docker node ls 
+               sudo docker events -f type=node
      
       - name: List docker processes
         working-directory: ${{runner.workspace-directory}}
