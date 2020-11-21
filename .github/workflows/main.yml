@@ -131,7 +131,7 @@ jobs:
       - name: Docker Events
         working-directory: ${{runner.workspace-directory}}
         shell: bash
-        run: sudo docker events
+        run: sudo docker events  -f type=node
                         
       - name: Docker Swarm
         working-directory: ${{runner.workspace-directory}}
