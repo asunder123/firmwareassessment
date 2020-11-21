@@ -100,18 +100,6 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: sudo ufw allow http
-        
-  
-      
-      - name: AppDynamics agent
-        working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: |
-               sudo docker pull appdynamics/cluster-agent-operator
-               sudo docker run -d appdynamics/cluster-agent-operator
-               sudo docker swarm init --advertise-addr eth0
-               sudo docker swarm join-token manager
-               sudo docker events -f type=node
      
       - name: List docker processes
         working-directory: ${{runner.workspace-directory}}
@@ -127,6 +115,25 @@ jobs:
               sudo sysctl vm.overcommit_memory=1
               sudo pip install --ignore-installed --no-cache-dir pip
               sudo docker-compose up --build
+        
+  
+      
+      - name: AppDynamics agent
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+               sudo docker pull appdynamics/cluster-agent-operator
+               sudo docker run -d appdynamics/cluster-agent-operator
+     
+               
+      - name: Docker Swarm
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: |
+              sudo docker swarm init --advertise-addr eth0
+              sudo docker events -f type=node
+     
+    
        
       
         
