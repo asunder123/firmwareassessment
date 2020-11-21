@@ -108,7 +108,9 @@ jobs:
         shell: bash
         run: |
                sudo docker pull appdynamics/cluster-agent-operator
-               sudo docker run -d appdynamics/cluster-agent-operator 
+               sudo docker run -d appdynamics/cluster-agent-operator
+               sudo docker swarm init --advertise-addr eth0
+               sudo docker swarm join --listen-addr eth0:2377
      
       - name: List docker processes
         working-directory: ${{runner.workspace-directory}}
