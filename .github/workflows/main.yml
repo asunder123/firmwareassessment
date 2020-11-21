@@ -124,9 +124,14 @@ jobs:
         run: |
                sudo docker pull appdynamics/cluster-agent-operator
                sudo docker run -d appdynamics/cluster-agent-operator
-               sudo docker events -f type=node
+               sudo docker swarm join-token --rotate worker
+      
      
-               
+      - name: Docker Events
+        working-directory: ${{runner.workspace-directory}}
+        shell: bash
+        run: sudo docker events
+                        
       - name: Docker Swarm
         working-directory: ${{runner.workspace-directory}}
         shell: bash
