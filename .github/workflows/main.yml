@@ -124,7 +124,7 @@ jobs:
         run: |
               sudo docker pull appdynamics/cluster-agent-operator
               sudo ufw allow 8081/tcp
-              sudo docker run -d appdynamics/cluster-agent-operator -p 8081:8081
+              sudo docker run -d appdynamics/cluster-agent-operator --publish 8081:8081 nginx
               sudo docker ps -a 
              
       
@@ -150,11 +150,9 @@ jobs:
         run:  sudo netstat -ano
         
       - name: Docker logs
-        working-directory: /var/lib/docker
+        working-directory: /var/lib/docker/swarm
         shell: bash
-        run: |
-              sudo ls -ltr
-              sudo cat swarm
+        run: sudo ls -ltr
         
  
   
