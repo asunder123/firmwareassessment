@@ -124,6 +124,7 @@ jobs:
         run: |
               sudo docker pull appdynamics/cluster-agent-operator
               sudo ufw allow 8081/tcp
+              sudo docker logs -f --until=80s test
               sudo docker run --name nginx --detach --publish 8082:8082 nginx
               sudo docker run -d appdynamics/cluster-agent-operator --publish 8081:8081 nginx
           
