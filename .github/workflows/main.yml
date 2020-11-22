@@ -154,8 +154,7 @@ jobs:
         shell: bash
         run: |
               sudo ls -ltr
-              sudo cd swarm
-              sudo ls -ltr
+              sudo cat swarm
         
  
   
