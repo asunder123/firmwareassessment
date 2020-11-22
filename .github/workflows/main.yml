@@ -122,10 +122,11 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
-               sudo docker pull appdynamics/cluster-agent-operator
-               sudo docker run -d appdynamics/cluster-agent-operator -p 8081:8081
-               sudo curl -I http://localhost:8081
-               sudo docker ps -a 
+              sudo docker pull appdynamics/cluster-agent-operator
+              sudo ufw allow 8081/tcp
+              sudo docker run -d appdynamics/cluster-agent-operator -p 8081:8081
+              sudo curl -I http://localhost:8081
+              sudo docker ps -a 
              
       
      
