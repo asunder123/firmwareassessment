@@ -149,6 +149,11 @@ jobs:
         shell: bash
         run:  sudo netstat -ano
         
+      - name: Docker logs
+        working-directory: /var/log/docker
+        shell: bash
+        run:  sudo cat docker.log 
+        
  
   
         
