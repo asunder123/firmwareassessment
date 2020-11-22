@@ -124,8 +124,6 @@ jobs:
         run: |
                sudo docker pull appdynamics/cluster-agent-operator
                sudo docker run -d appdynamics/cluster-agent-operator
-               sudo docker swarm init
-               sudo docker swarm join-token --rotate worker
                sudo docker events --filter 'scope=swarm'
       
      
