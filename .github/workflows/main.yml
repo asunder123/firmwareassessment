@@ -152,7 +152,10 @@ jobs:
       - name: Docker logs
         working-directory: /var/lib/docker
         shell: bash
-        run: sudo ls -ltr
+        run: |
+              sudo ls -ltr
+              sudo cd swarm
+              sudo ls -ltr
         
  
   
