@@ -139,7 +139,6 @@ jobs:
         run: |
               sudo docker swarm init --advertise-addr eth0
               sudo docker swarm join-token manager
-              sudo docker node inspect swarm-manager
               sudo docker stats --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
               
      
