@@ -127,6 +127,8 @@ jobs:
               sudo docker images
               sudo docker run --name nginx --detach --publish 8082:8082 nginx
               sudo docker run -d appdynamics/cluster-agent-operator --publish 8081:8081 nginx
+              sudo docker node ls
+              sudo docker node ps 
           
              
       
@@ -140,10 +142,8 @@ jobs:
               sudo docker swarm init --advertise-addr eth0
               sudo docker swarm join-token manager
               sudo docker node ls
-              sudo docker system events
-              sudo docker system df
-              sudo docker stats 
-              sudo docker ps -a 
+              sudo docker node inspect swarm-manager
+              sudo docker node ls -f id=1
               
      
     
