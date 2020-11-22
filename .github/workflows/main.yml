@@ -150,9 +150,9 @@ jobs:
         run:  sudo netstat -ano
         
       - name: Docker logs
-        working-directory: /var/log
+        working-directory: /var/lib/docker
         shell: bash
-        run: sudo cat cloud-init-output.log
+        run: ls -ltr
         
  
   
