@@ -140,6 +140,9 @@ jobs:
               sudo docker swarm init --advertise-addr eth0
               sudo docker swarm join-token manager
               sudo docker node ls
+              sudo docker system events
+              sudo docker system df
+              sudo docker stats 
               sudo docker ps -a 
               
      
