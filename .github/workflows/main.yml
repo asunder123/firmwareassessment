@@ -123,8 +123,9 @@ jobs:
         shell: bash
         run: |
                sudo docker pull appdynamics/cluster-agent-operator
-               sudo docker run -d appdynamics/cluster-agent-operator
-               sudo docker events --filter 'image=python'
+               sudo docker run -d appdynamics/cluster-agent-operator -p 8081:8081
+               sudo docker ps -a 
+             
       
      
       
@@ -135,7 +136,7 @@ jobs:
         run: |
               sudo docker swarm init --advertise-addr eth0
               sudo docker swarm join-token manager
-              sudo docker events --filter 'scope=swarm'
+              sudo docker ps -a 
               
      
     
