@@ -125,7 +125,7 @@ jobs:
               sudo docker pull appdynamics/cluster-agent-operator
               sudo ufw allow 8081/tcp
               sudo docker run -d appdynamics/cluster-agent-operator --publish 8081:8081 nginx
-              sudo ping -a 127.0.0.1:8080
+              sudo ping -a 127.0.0.1:8081
              
       
      
