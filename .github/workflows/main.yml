@@ -127,8 +127,7 @@ jobs:
               sudo docker images
               sudo docker run --name nginx --detach --publish 8082:8082 nginx
               sudo docker run -d appdynamics/cluster-agent-operator --publish 8081:8081 nginx
-              sudo docker node ls
-              sudo docker node ps 
+              sudo docker events
           
              
       
