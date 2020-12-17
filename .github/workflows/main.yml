@@ -34,7 +34,7 @@ jobs:
         run: |
               pwd
               status=$?
-              if test $status -eq 0
+              if $status -eq 0
               then 
                 echo "successful script"
               else
