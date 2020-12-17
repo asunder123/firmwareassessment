@@ -30,8 +30,15 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         working-directory: ${{runner.workspace-directory}}
-        shell: bash
-        run: pwd
+        shell: sh
+        run: |
+              pwd
+              status=$?
+              if test $status -eq 0
+              then 
+                echo "successful script"
+              else
+                echo "Failed"
         
       #- name: Open Telegraf port
        # working-directory: ${{runner.workspace-directory}}
