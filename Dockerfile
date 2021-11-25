@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 ADD *.py /
 EXPOSE 8085
-FROM python:3
+FROM python:3.10.0b2
 EXPOSE 8084	
 ADD comm_og_service_tool.py /
 ADD *.sh /
