@@ -32,6 +32,7 @@ jobs:
         working-directory: ${{runner.workspace-directory}}
         shell: bash
         run: |
+              python -m pip install --upgrade pip
               pwd
               status=$?
               if test $status -eq 0
