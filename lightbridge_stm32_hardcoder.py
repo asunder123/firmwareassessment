@@ -136,8 +136,9 @@ import itertools
 import enum
 import json
 import configparser
-config = configparser.ConfigParser()
 
+config = configparser.ConfigParser()
+values=config.read('ipconfig.ini')
 
 sys.path.insert(0, './')
 from amba_sys_hardcoder import eprint, elf_march_to_asm_config, \
