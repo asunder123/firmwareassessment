@@ -2,8 +2,14 @@ import time
 
 import redis
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+
+# Add code to fix security hotspot
+csrf = CSRFProtect()
+csrf.init_app(app)   
+
 cache = redis.Redis(host='redis', port=6379)
 
 def get_hit_count():
