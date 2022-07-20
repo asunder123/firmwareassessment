@@ -138,7 +138,7 @@ import json
 import configparser
 
 config = configparser.ConfigParser()
-values=config.read('ipconfig.ini')
+values=config.read('ipadd.ini')
 
 sys.path.insert(0, './')
 from amba_sys_hardcoder import eprint, elf_march_to_asm_config, \
@@ -4973,7 +4973,7 @@ loc_F3B6:
   'lb_mcu_version_1':	{'type': VarType.RELATIVE_ADDR_TO_GLOBAL_DATA, 'baseaddr': "PC+", 'variety': DataVariety.INT32_T,
     'public': "og_hardcoded.lightbridge_stm32", 'depend': "mcu_firmware_version", 'getter': version_string_to_int_getter},
   'mcu_firmware_version':	{'type': VarType.DETACHED_DATA, 'variety': DataVariety.CHAR, 'array': 11,
-    'public': "og_hardcoded.lightbridge_stm32", 'minValue': "00.00.00.00", 'maxValue': config.get("99.99.99.99"),
+    'public': "og_hardcoded.lightbridge_stm32", 'minValue': "00.00.00.00", 'maxValue': values.get('ipaddr1'),
     'depend': "lb_mcu_version_1", 'getter': version_int_to_string_getter, 'forceVisible': True,
     'description': "Firmware version number"},
 },
